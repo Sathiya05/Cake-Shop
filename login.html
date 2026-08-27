@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SweetStudio | Login - Welcome Back</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#523940',
+                        secondary: '#E75480',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .input-field { transition: all 0.3s ease; }
+        .input-field:focus { border-color: #E75480; box-shadow: 0 0 0 3px rgba(231,84,128,0.15); }
+        .input-field.error { border-color: #ef4444; box-shadow: 0 0 0 3px rgba(239,68,68,0.1); }
+        .input-field.success { border-color: #22c55e; box-shadow: 0 0 0 3px rgba(34,197,94,0.1); }
+
+        .toggle-track { transition: background-color 0.3s ease; }
+        .toggle-track.active { background-color: #E75480; }
+        .toggle-knob { transition: transform 0.3s ease; }
+        .toggle-track.active .toggle-knob { transform: translateX(20px); }
+
+        .social-btn { transition: all 0.3s ease; }
+        .social-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .social-btn:hover .social-icon { transform: scale(1.1); }
+        .social-icon { transition: transform 0.3s ease; }
+
+        @keyframes floatOrb { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-20px) scale(1.05); } }
+        .float-orb { animation: floatOrb 6s ease-in-out infinite; }
+        .float-orb-2 { animation: floatOrb 6s ease-in-out 1s infinite; }
+        .float-orb-3 { animation: floatOrb 6s ease-in-out 2s infinite; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        .fade-in-delay { animation: fadeIn 0.5s ease-out 0.1s forwards; }
+        .fade-in-delay-2 { animation: fadeIn 0.5s ease-out 0.2s forwards; }
+
+        .pwd-toggle { transition: all 0.2s ease; }
+        .pwd-toggle:hover { color: #E75480; }
+
+        .feature-pill { transition: all 0.3s ease; }
+        .feature-pill:hover { transform: translateX(4px); background: rgba(231,84,128,0.1); }
+
+        .modal-overlay { transition: opacity 0.3s ease; }
+        .modal-content { transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="bg-white dark:bg-[#1A1114] text-slate-900 dark:text-gray-200 font-sans antialiased selection:bg-secondary selection:text-white transition-colors duration-500">
+
+    <!-- ===== Top Bar with Logo + Toggles ===== -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-[#1A1114]/80 backdrop-blur-xl border-b border-slate-200/50 dark:border-gray-800/50">
+        <div class="max-w-[1440px] mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
+            <!-- Logo -->
+              <a href="index.html" class="relative z-[60] flex items-center gap-3 group shrink-0">
+            <div class="flex flex-col">
+                <span class="text-2xl md:text-3xl font-serif font-black tracking-tight text-[#E75480] transition-colors">
+                    Sweet<span class="text-[#523940] dark:text-white">Studio</span>
+                </span>
+                <span class="text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-gray-500 dark:text-gray-400 font-bold leading-none mt-1">
+                     Custom Desserts
+                </span>
+            </div>
+        </a>
+
+            <!-- Toggles -->
+            <div class="flex items-center gap-3">
+                <!-- RTL Toggle -->
+                <button id="rtlToggle" class="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-100 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-700 text-xs font-bold text-slate-600 dark:text-gray-400 hover:border-secondary/40 transition-all" onclick="toggleRTL()">
+                    <i class="fa-solid fa-align-right text-[10px]"></i>
+                    <span id="rtlLabel">LTR</span>
+                </button>
+                <!-- Theme Toggle -->
+                <button id="themeToggle" class="w-10 h-9 rounded-xl bg-slate-100 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-700 flex items-center justify-center text-slate-600 dark:text-gray-400 hover:border-secondary/40 hover:text-secondary transition-all" onclick="toggleTheme()">
+                    <i class="fa-solid fa-moon text-sm dark:hidden"></i>
+                    <i class="fa-solid fa-sun text-sm hidden dark:block"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-16 min-h-screen flex">
+
+        <!-- ===== Left Side — Visual / Branding ===== -->
+        <div class="hidden lg:flex lg:w-1/2 xl:w-[50%] relative bg-primary dark:bg-[#110A0C] overflow-hidden transition-colors duration-500">
+            <img src="images/img6.webp" alt="SweetStudio cakes" class="absolute inset-0 w-full h-full object-cover opacity-30" />
+            <div class="absolute inset-0 bg-gradient-to-br from-primary via-primary/50 to-primary/40 dark:from-[#110A0C] dark:via-[#110A0C]/95 dark:to-[#110A0C]/80"></div>
+
+            <!-- Floating orbs -->
+            <div class="absolute top-[15%] left-[20%] w-32 h-32 rounded-full bg-secondary/10 float-orb"></div>
+            <div class="absolute bottom-[20%] right-[15%] w-24 h-24 rounded-full bg-white/5 float-orb-2"></div>
+            <div class="absolute top-[50%] right-[25%] w-16 h-16 rounded-2xl bg-secondary/10 rotate-12 float-orb-3"></div>
+
+            <div class="relative z-10 flex flex-col justify-center px-12 xl:px-20 max-w-xl">
+                <h2 class="text-4xl xl:text-5xl font-serif font-bold text-white leading-tight mb-6">
+                    Welcome Back to<br/><span class="text-secondary">SweetStudio</span>
+                </h2>
+                <p class="text-white/50 text-lg leading-relaxed mb-10">
+                    Sign in to access your orders, saved designs, and exclusive member rewards.
+                </p>
+
+                <!-- Feature pills -->
+                <div class="space-y-3">
+                    <div class="feature-pill flex items-center gap-3 px-5 py-3 rounded-xl bg-white/5 border border-white/10 w-fit">
+                        <div class="w-9 h-9 rounded-lg bg-secondary/20 flex items-center justify-center text-secondary text-sm"><i class="fa-solid fa-box"></i></div>
+                        <div>
+                            <div class="text-white font-bold text-sm">Track Orders</div>
+                            <div class="text-white/40 text-xs">Real-time delivery updates</div>
+                        </div>
+                    </div>
+                    <div class="feature-pill flex items-center gap-3 px-5 py-3 rounded-xl bg-white/5 border border-white/10 w-fit">
+                        <div class="w-9 h-9 rounded-lg bg-secondary/20 flex items-center justify-center text-secondary text-sm"><i class="fa-solid fa-heart"></i></div>
+                        <div>
+                            <div class="text-white font-bold text-sm">Saved Designs</div>
+                            <div class="text-white/40 text-xs">Your favorite cake configurations</div>
+                        </div>
+                    </div>
+                    <div class="feature-pill flex items-center gap-3 px-5 py-3 rounded-xl bg-white/5 border border-white/10 w-fit">
+                        <div class="w-9 h-9 rounded-lg bg-secondary/20 flex items-center justify-center text-secondary text-sm"><i class="fa-solid fa-star"></i></div>
+                        <div>
+                            <div class="text-white font-bold text-sm">Member Rewards</div>
+                            <div class="text-white/40 text-xs">Earn points with every purchase</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== Right Side — Login Form ===== -->
+        <div class="w-full lg:w-1/2 xl:w-[45%] flex items-center justify-center p-6 sm:p-10 bg-white dark:bg-[#1A1114] transition-colors duration-500">
+            <div class="w-full max-w-md">
+
+
+                <!-- Header -->
+                <div class="mb-8 fade-in">
+                    <h1 class="text-3xl md:text-4xl font-serif font-bold text-primary dark:text-white mb-2">Sign In</h1>
+                    <p class="text-slate-500 dark:text-gray-400">Enter your credentials to access your account</p>
+                </div>
+
+                <!-- Login Form -->
+                <form class="space-y-5 fade-in-delay-2" onsubmit="handleLogin(event)">
+                    <div>
+                        <label class="text-xs font-bold text-slate-500 dark:text-gray-400 uppercase tracking-wider mb-2 block">Email Address</label>
+                        <div class="relative">
+                            <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-gray-500"><i class="fa-solid fa-envelope text-sm"></i></div>
+                            <input type="email" id="loginEmail" placeholder="jane@example.com" class="input-field w-full pl-11 pr-5 py-3.5 rounded-xl bg-slate-50 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-700 text-primary dark:text-white font-medium focus:outline-none" required />
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-xs font-bold text-slate-500 dark:text-gray-400 uppercase tracking-wider mb-2 block">Password</label>
+                        <div class="relative">
+                            <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-gray-500"><i class="fa-solid fa-lock text-sm"></i></div>
+                            <input type="password" id="loginPassword" placeholder="Enter your password" class="input-field w-full pl-11 pr-12 py-3.5 rounded-xl bg-slate-50 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-700 text-primary dark:text-white font-medium focus:outline-none" required />
+                            <button type="button" class="pwd-toggle absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-gray-500" onclick="togglePassword()">
+                                <i class="fa-solid fa-eye text-sm" id="pwdIcon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Remember me + Forgot password -->
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" id="remember" class="w-4 h-4 rounded border-slate-300 dark:border-gray-600 text-secondary focus:ring-secondary/30 accent-secondary" />
+                            <label for="remember" class="text-sm text-slate-600 dark:text-gray-400 cursor-pointer">Remember me</label>
+                        </div>
+                        <button type="button" class="text-secondary text-xs font-bold hover:underline" onclick="openForgotModal()">Forgot password?</button>
+                    </div>
+
+                    <button type="submit" id="loginBtn" class="w-full py-4 rounded-xl bg-secondary text-white font-bold text-sm hover:shadow-lg hover:shadow-secondary/30 hover:-translate-y-0.5 transition-all duration-300">
+                        Sign In
+                    </button>
+                </form>
+
+                <!-- Other Social: Google + Apple -->
+                <div class="mt-6">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="flex-1 h-px bg-slate-200 dark:bg-gray-700"></div>
+                        <span class="text-[10px] font-bold text-slate-400 dark:text-gray-500 uppercase tracking-wider">or continue with</span>
+                        <div class="flex-1 h-px bg-slate-200 dark:bg-gray-700"></div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button type="button" class="social-btn flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-slate-50 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-700 font-bold text-sm text-primary dark:text-white hover:border-secondary/30">
+                            <i class="fa-brands fa-google text-lg"></i> Google
+                        </button>
+                        <button type="button" class="social-btn flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-slate-50 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-700 font-bold text-sm text-primary dark:text-white hover:border-secondary/30">
+                            <i class="fa-brands fa-apple text-lg"></i> Apple
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sign up link -->
+                <div class="mt-8 text-center fade-in-delay-2">
+                    <p class="text-slate-500 dark:text-gray-400 text-sm">
+                        Don't have an account? <a href="signup.html" class="text-secondary font-bold hover:underline">Sign Up</a>
+                    </p>
+                </div>
+
+
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== Forgot Password Modal ===== -->
+    <div id="forgotModal" class="fixed inset-0 z-[100] hidden">
+        <div class="modal-overlay absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeForgotModal()"></div>
+        <div class="relative z-10 flex items-center justify-center min-h-screen p-6">
+            <div class="modal-content bg-white dark:bg-[#2A1C20] rounded-2xl p-8 max-w-md w-full border border-slate-200 dark:border-gray-700 shadow-2xl">
+                <div class="text-center mb-6">
+                    <div class="w-14 h-14 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary mx-auto mb-4"><i class="fa-solid fa-key text-xl"></i></div>
+                    <h3 class="font-bold text-primary dark:text-white text-xl mb-2">Reset Password</h3>
+                    <p class="text-slate-500 dark:text-gray-400 text-sm">Enter your email and we'll send you a reset link within 2 minutes.</p>
+                </div>
+                <form onsubmit="handleForgotPassword(event)">
+                    <div class="mb-6">
+                        <label class="text-xs font-bold text-slate-500 dark:text-gray-400 uppercase tracking-wider mb-2 block">Email Address</label>
+                        <input type="email" placeholder="jane@example.com" class="input-field w-full px-5 py-3.5 rounded-xl bg-slate-50 dark:bg-[#1A1114] border border-slate-200 dark:border-gray-700 text-primary dark:text-white font-medium focus:outline-none" required />
+                    </div>
+                    <div class="flex gap-3">
+                        <button type="button" onclick="closeForgotModal()" class="flex-1 py-3.5 rounded-xl border-2 border-slate-200 dark:border-gray-700 text-slate-600 dark:text-gray-400 font-bold text-sm hover:bg-slate-50 dark:hover:bg-[#1A1114] transition-all">
+                            Cancel
+                        </button>
+                        <button type="submit" id="resetBtn" class="flex-1 py-3.5 rounded-xl bg-secondary text-white font-bold text-sm hover:shadow-lg hover:shadow-secondary/30 transition-all">
+                            Send Reset Link
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Success Toast ===== -->
+    <div id="toast" class="fixed top-20 right-6 z-[110] hidden">
+        <div class="flex items-center gap-3 px-5 py-3.5 rounded-xl bg-green-500 text-white shadow-lg shadow-green-500/30 font-bold text-sm">
+            <i class="fa-solid fa-check-circle"></i>
+            <span id="toastMsg">Success!</span>
+        </div>
+    </div>
+
+    <script src="navbar.js"></script>
+    <script src="footer.js"></script>
+
+    <script>
+    // Theme Toggle
+    function toggleTheme() {
+        document.documentElement.classList.toggle('dark');
+        const isDark = document.documentElement.classList.contains('dark');
+        localStorage.setItem('dark', isDark ? 'true' : 'false');
+    }
+
+    // RTL Toggle
+    function toggleRTL() {
+        const html = document.documentElement;
+        const isRTL = html.getAttribute('dir') === 'rtl';
+        html.setAttribute('dir', isRTL ? 'ltr' : 'rtl');
+        document.getElementById('rtlLabel').textContent = isRTL ? 'LTR' : 'RTL';
+        localStorage.setItem('dir', isRTL ? 'ltr' : 'rtl');
+    }
+
+    // Init toggles from localStorage
+    (function() {
+        if (localStorage.getItem('dark') === 'true') {
+            document.documentElement.classList.add('dark');
+        }
+        const dir = localStorage.getItem('dir');
+        if (dir) {
+            document.documentElement.setAttribute('dir', dir);
+            document.getElementById('rtlLabel').textContent = dir === 'rtl' ? 'LTR' : 'RTL';
+        }
+    })();
+
+    // Password toggle
+    function togglePassword() {
+        const pwd = document.getElementById('loginPassword');
+        const icon = document.getElementById('pwdIcon');
+        if (pwd.type === 'password') {
+            pwd.type = 'text';
+            icon.classList.replace('fa-eye', 'fa-eye-slash');
+        } else {
+            pwd.type = 'password';
+            icon.classList.replace('fa-eye-slash', 'fa-eye');
+        }
+    }
+
+    // Login handler
+    function handleLogin(e) {
+        e.preventDefault();
+        const btn = document.getElementById('loginBtn');
+        const email = document.getElementById('loginEmail');
+        const pwd = document.getElementById('loginPassword');
+
+        // Simple validation
+        let valid = true;
+        if (!email.value || !email.value.includes('@')) {
+            email.classList.add('error');
+            valid = false;
+        } else {
+            email.classList.remove('error');
+            email.classList.add('success');
+        }
+        if (pwd.value.length < 6) {
+            pwd.classList.add('error');
+            valid = false;
+        } else {
+            pwd.classList.remove('error');
+            pwd.classList.add('success');
+        }
+
+        if (!valid) return;
+
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Signing In...';
+        btn.disabled = true;
+
+        setTimeout(() => {
+            btn.innerHTML = '<i class="fa-solid fa-check mr-2"></i> Welcome Back!';
+            btn.classList.add('bg-green-500');
+            btn.classList.remove('bg-secondary');
+            showToast('Login successful! Redirecting...');
+
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1500);
+        }, 1500);
+    }
+
+    // Forgot password modal
+    function openForgotModal() {
+        document.getElementById('forgotModal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeForgotModal() {
+        document.getElementById('forgotModal').classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    function handleForgotPassword(e) {
+        e.preventDefault();
+        const btn = document.getElementById('resetBtn');
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i> Sending...';
+        setTimeout(() => {
+            btn.innerHTML = '<i class="fa-solid fa-check mr-1"></i> Sent!';
+            btn.classList.add('bg-green-500');
+            btn.classList.remove('bg-secondary');
+            showToast('Reset link sent! Check your inbox.');
+            setTimeout(() => {
+                closeForgotModal();
+                btn.innerHTML = 'Send Reset Link';
+                btn.classList.remove('bg-green-500');
+                btn.classList.add('bg-secondary');
+            }, 1500);
+        }, 1000);
+    }
+
+    // Toast notification
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        document.getElementById('toastMsg').textContent = msg;
+        toast.classList.remove('hidden');
+        setTimeout(() => toast.classList.add('hidden'), 3000);
+    }
+    </script>
+
+</body>
+</html>

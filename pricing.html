@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SweetStudio | Pricing - Transparent & Delicious</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#523940',
+                        secondary: '#E75480',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .toggle-track { transition: background-color 0.3s ease; }
+        .toggle-track.active { background-color: #E75480; }
+        .toggle-knob { transition: transform 0.3s ease; }
+        .toggle-track.active .toggle-knob { transform: translateX(20px); }
+
+        .price-val { transition: all 0.4s cubic-bezier(.4,0,.2,1); display: inline-block; }
+        .price-val.switching { transform: translateY(-10px); opacity: 0; }
+        .price-val.switched { transform: translateY(10px); opacity: 0; }
+
+        .addon-card.selected { border-color: #E75480 !important; background: rgba(231,84,128,0.05); }
+        .addon-card.selected .addon-check { opacity: 1; transform: scale(1); }
+        .addon-check { opacity: 0; transform: scale(0.5); transition: all 0.2s ease; }
+
+        .tbl-row:nth-child(even) { background: rgba(231,84,128,0.03); }
+        .dark .tbl-row:nth-child(even) { background: rgba(231,84,128,0.05); }
+
+        @keyframes countUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .count-anim { animation: countUp 0.3s ease-out forwards; }
+
+        .ribbon { position: absolute; top: -1px; right: -1px; }
+        .ribbon span {
+            display: block; padding: 6px 40px; font-size: 11px; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 1px; color: #fff; background: #E75480;
+            transform: rotate(45deg) translate(22%, -10%); box-shadow: 0 2px 8px rgba(231,84,128,0.3);
+        }
+
+        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .float-anim { animation: float 3s ease-in-out infinite; }
+        .float-anim-delay { animation: float 3s ease-in-out 0.5s infinite; }
+    </style>
+</head>
+<body class="bg-white dark:bg-[#1A1114] text-slate-900 dark:text-gray-200 font-sans antialiased selection:bg-secondary selection:text-white transition-colors duration-500">
+
+    <div id="navbar"></div>
+
+    <main class="pt-20 md:pt-24">
+
+        <!-- ===== 1. Hero — Centered Icon Cluster + Animated Ribbon Prices ===== -->
+        <section class="relative py-20 md:py-28 bg-primary dark:bg-[#110A0C] overflow-hidden transition-colors duration-500">
+            <img src="images/bg5.avif" alt="Pricing hero" class="absolute inset-0 w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/60 to-primary dark:from-[#110A0C]/90 dark:via-[#110A0C]/75 dark:to-[#110A0C]"></div>
+            <div class="absolute top-10 left-[10%] w-16 h-16 rounded-full bg-white/5 float-anim hidden lg:block"></div>
+            <div class="absolute bottom-16 right-[12%] w-12 h-12 rounded-full bg-secondary/20 float-anim-delay hidden lg:block"></div>
+            <div class="absolute top-24 right-[25%] w-8 h-8 rounded-lg bg-white/5 rotate-12 float-anim hidden lg:block"></div>
+
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10 text-center relative z-10">
+                <div class="inline-flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-xl bg-secondary/20 flex items-center justify-center text-secondary"><i class="fa-solid fa-receipt text-sm"></i></div>
+                    <span class="text-white/50 text-xs font-bold tracking-widest uppercase">Transparent Pricing</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white leading-[1.1] mb-6">
+                    Simple, Honest<br/><span class="text-secondary">Pricing</span>
+                </h1>
+                <p class="text-white/50 text-lg max-w-xl mx-auto mb-12 leading-relaxed">
+                    No hidden fees. No surprises. Every cake is priced by size, flavor, and design — you always know exactly what you're paying.
+                </p>
+
+                <!-- Floating price cards -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+                    <div class="float-anim bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl px-6 py-4 text-center">
+                        <div class="text-secondary text-2xl font-serif font-bold">$4.50</div>
+                        <div class="text-white/40 text-xs mt-1">per slice</div>
+                    </div>
+                    <div class="float-anim-delay bg-secondary rounded-2xl px-6 py-4 text-center shadow-lg shadow-secondary/20">
+                        <div class="text-white text-2xl font-serif font-bold">$32</div>
+                        <div class="text-white/70 text-xs mt-1">starting cake</div>
+                    </div>
+                    <div class="float-anim bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl px-6 py-4 text-center">
+                        <div class="text-secondary text-2xl font-serif font-bold">$189</div>
+                        <div class="text-white/40 text-xs mt-1">wedding tier</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 2. Per-Slice / Per-Cake Toggle ===== -->
+        <section class="py-20 bg-white dark:bg-[#1A1114] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="text-center mb-12">
+                    <span class="text-secondary font-bold text-sm tracking-wider uppercase mb-3 block">Choose View</span>
+                    <h2 class="text-3xl md:text-5xl font-serif font-bold text-primary dark:text-white mb-4">Standard Pricing</h2>
+                    <p class="text-slate-600 dark:text-gray-400 max-w-lg mx-auto">Toggle between per-slice and per-cake pricing to match how you're ordering.</p>
+                </div>
+
+                <!-- Toggle -->
+                <div class="flex items-center justify-center gap-4 mb-14">
+                    <span class="text-sm font-bold text-primary dark:text-white" id="lbl-slice">Per Slice</span>
+                    <button id="priceToggle" class="toggle-track relative w-12 h-6 rounded-full bg-slate-300 dark:bg-gray-700 cursor-pointer" onclick="togglePriceMode()">
+                        <div class="toggle-knob absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow-md"></div>
+                    </button>
+                    <span class="text-sm font-bold text-slate-400 dark:text-gray-500" id="lbl-cake">Per Cake</span>
+                </div>
+
+                <!-- Pricing Grid -->
+                <div class="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6 max-w-5xl mx-auto" id="priceGrid">
+                    <!-- Card 1 -->
+                    <div class="relative bg-slate-50 dark:bg-[#2A1C20] rounded-2xl p-8 border border-slate-200 dark:border-gray-800 hover:shadow-xl transition-all duration-300 group">
+                        <div class="w-14 h-14 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary mb-5"><i class="fa-solid fa-cake-candles text-xl"></i></div>
+                        <h3 class="font-bold text-primary dark:text-white text-xl mb-1">Classic</h3>
+                        <p class="text-slate-500 dark:text-gray-400 text-sm mb-5">Our beloved signature flavors</p>
+                        <div class="mb-6">
+                            <span class="text-4xl font-serif font-bold text-primary dark:text-white price-val" data-slice="$4.50" data-cake="$32">$4.50</span>
+                            <span class="text-slate-400 dark:text-gray-500 text-sm ml-1 price-unit">/slice</span>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start gap-2 text-sm text-slate-600 dark:text-gray-400"><i class="fa-solid fa-check text-secondary text-xs mt-1 shrink-0"></i> Vanilla, Chocolate, Strawberry, Red Velvet</li>
+                            <li class="flex items-start gap-2 text-sm text-slate-600 dark:text-gray-400"><i class="fa-solid fa-check text-secondary text-xs mt-1 shrink-0"></i> Swiss meringue buttercream</li>
+                            <li class="flex items-start gap-2 text-sm text-slate-600 dark:text-gray-400"><i class="fa-solid fa-check text-secondary text-xs mt-1 shrink-0"></i> Basic decoration included</li>
+                            <li class="flex items-start gap-2 text-sm text-slate-600 dark:text-gray-400"><i class="fa-solid fa-check text-secondary text-xs mt-1 shrink-0"></i> 6" to 12" round or square</li>
+                        </ul>
+                        <a href="orders.html" class="block w-full text-center py-3.5 rounded-full border-2 border-primary/20 dark:border-gray-700 text-primary dark:text-white font-bold text-sm hover:bg-primary hover:text-white hover:border-primary transition-all duration-300">
+                            Select Classic
+                        </a>
+                    </div>
+
+                    <!-- Card 2 — Popular -->
+                    <div class="relative bg-white dark:bg-[#1F1418] rounded-2xl p-8 border-2 border-secondary shadow-xl shadow-secondary/10 hover:shadow-2xl hover:shadow-secondary/15 transition-all duration-300 group">
+                        <div class="ribbon"><span>Popular</span></div>
+                        <div class="w-14 h-14 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary mb-5"><i class="fa-solid fa-star text-xl"></i></div>
+                        <h3 class="font-bold text-primary dark:text-white text-xl mb-1">Premium</h3>
+                        <p class="text-slate-500 dark:text-gray-400 text-sm mb-5">Elevated flavors with custom options</p>
+                        <div class="mb-6">
+                            <span class="text-4xl font-serif font-bold text-secondary price-val" data-slice="$7.50" data-cake="$55">$7.50</span>
+                            <span class="text-slate-400 dark:text-gray-500 text-sm ml-1 price-unit">/slice</span>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start gap-2 text-sm text-slate-600 dark:text-gray-400"><i class="fa-solid fa-check text-secondary text-xs mt-1 shrink-0"></i> 20+ artisan flavors</li>
+                            <li class="flex items-start gap-2 text-sm text-slate-600 dark:text-gray-400"><i class="fa-solid fa-check text-secondary text-xs mt-1 shrink-0"></i> Ganache, curd & praline fillings</li>
+                            <li class="flex items-start gap-2 text-sm text-slate-600 dark:text-gray-400"><i class="fa-solid fa-check text-secondary text-xs mt-1 shrink-0"></i> Custom color palette</li>
+                            <li class="flex items-start gap-2 text-sm text-slate-600 dark:text-gray-400"><i class="fa-solid fa-check text-secondary text-xs mt-1 shrink-0"></i> Personalized message plaque</li>
+                            <li class="flex items-start gap-2 text-sm text-slate-600 dark:text-gray-400"><i class="fa-solid fa-check text-secondary text-xs mt-1 shrink-0"></i> 4" to 14" any shape</li>
+                        </ul>
+                        <a href="orders.html" class="block w-full text-center py-3.5 rounded-full bg-secondary text-white font-bold text-sm hover:shadow-lg hover:shadow-secondary/30 hover:-translate-y-0.5 transition-all duration-300">
+                            Select Premium
+                        </a>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="relative bg-slate-50 dark:bg-[#2A1C20] rounded-2xl p-8 border border-slate-200 dark:border-gray-800 hover:shadow-xl transition-all duration-300 group">
+                        <div class="w-14 h-14 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary mb-5"><i class="fa-solid fa-gem text-xl"></i></div>
+                        <h3 class="font-bold text-primary dark:text-white text-xl mb-1">Signature</h3>
+                        <p class="text-slate-500 dark:text-gray-400 text-sm mb-5">Our chef's exclusive creations</p>
+                        <div class="mb-6">
+                            <span class="text-4xl font-serif font-bold text-primary dark:text-white price-val" data-slice="$11.00" data-cake="$85">$11.00</span>
+                            <span class="text-slate-400 dark:text-gray-500 text-sm ml-1 price-unit">/slice</span>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start gap-2 text-sm text-slate-600 dark:text-gray-400"><i class="fa-solid fa-check text-secondary text-xs mt-1 shrink-0"></i> Chef's seasonal creations</li>
+                            <li class="flex items-start gap-2 text-sm text-slate-600 dark:text-gray-400"><i class="fa-solid fa-check text-secondary text-xs mt-1 shrink-0"></i> Exotic & rare ingredients</li>
+                            <li class="flex items-start gap-2 text-sm text-slate-600 dark:text-gray-400"><i class="fa-solid fa-check text-secondary text-xs mt-1 shrink-0"></i> Hand-painted fondant work</li>
+                            <li class="flex items-start gap-2 text-sm text-slate-600 dark:text-gray-400"><i class="fa-solid fa-check text-secondary text-xs mt-1 shrink-0"></i> Edible gold & luxury accents</li>
+                            <li class="flex items-start gap-2 text-sm text-slate-600 dark:text-gray-400"><i class="fa-solid fa-check text-secondary text-xs mt-1 shrink-0"></i> 6" to 18" any shape</li>
+                        </ul>
+                        <a href="orders.html" class="block w-full text-center py-3.5 rounded-full border-2 border-primary/20 dark:border-gray-700 text-primary dark:text-white font-bold text-sm hover:bg-primary hover:text-white hover:border-primary transition-all duration-300">
+                            Select Signature
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 3. Event Packages — Grid ===== -->
+        <section class="py-24 bg-slate-50 dark:bg-[#110A0C] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
+                    <div>
+                        <span class="text-secondary font-bold text-sm tracking-wider uppercase mb-3 block">Packages</span>
+                        <h2 class="text-3xl md:text-5xl font-serif font-bold text-primary dark:text-white mb-3">Event Packages</h2>
+                        <p class="text-slate-600 dark:text-gray-400 max-w-lg">Curated event packages designed to fit every occasion and guest count.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Package 1 -->
+                    <div class="pkg-card bg-white dark:bg-[#2A1C20] rounded-2xl overflow-hidden border border-slate-200 dark:border-gray-800 hover:shadow-lg transition-all flex flex-col">
+                        <div class="h-44 overflow-hidden">
+                            <img src="images\Birthday Bash.avif" alt="Birthday package" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                        </div>
+                        <div class="p-6 flex flex-col flex-1">
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <h3 class="font-bold text-primary dark:text-white text-lg">Birthday Bash</h3>
+                                <span class="px-2.5 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-bold whitespace-nowrap">8-20 guests</span>
+                            </div>
+                            <p class="text-slate-500 dark:text-gray-400 text-sm mb-4 flex-1">Single-tier cake, cupcakes, cake pops, and a custom birthday message.</p>
+                            <div class="flex items-end gap-1 mb-5">
+                                <span class="text-3xl font-serif font-bold text-primary dark:text-white">$89</span>
+                                <span class="text-slate-400 dark:text-gray-500 text-sm mb-0.5">/package</span>
+                            </div>
+                            <a href="orders.html" class="block w-full text-center py-3 rounded-full border-2 border-secondary/20 text-secondary font-bold text-sm hover:bg-secondary hover:text-white transition-all duration-300">
+                                Book Package
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Package 2 -->
+                    <div class="pkg-card bg-white dark:bg-[#2A1C20] rounded-2xl overflow-hidden border border-slate-200 dark:border-gray-800 hover:shadow-lg transition-all flex flex-col">
+                        <div class="h-44 overflow-hidden">
+                            <img src="images\Wedding bliss.webp" alt="Wedding package" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                        </div>
+                        <div class="p-6 flex flex-col flex-1">
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <h3 class="font-bold text-primary dark:text-white text-lg">Wedding Bliss</h3>
+                                <span class="px-2.5 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-bold whitespace-nowrap">50-150 guests</span>
+                            </div>
+                            <p class="text-slate-500 dark:text-gray-400 text-sm mb-4 flex-1">Multi-tier wedding cake, dessert table, groom's cake, and cake cutting service.</p>
+                            <div class="flex items-end gap-1 mb-5">
+                                <span class="text-3xl font-serif font-bold text-primary dark:text-white">$589</span>
+                                <span class="text-slate-400 dark:text-gray-500 text-sm mb-0.5">/package</span>
+                            </div>
+                            <a href="orders.html" class="block w-full text-center py-3 rounded-full border-2 border-secondary/20 text-secondary font-bold text-sm hover:bg-secondary hover:text-white transition-all duration-300">
+                                Book Package
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Package 3 -->
+                    <div class="pkg-card bg-white dark:bg-[#2A1C20] rounded-2xl overflow-hidden border border-slate-200 dark:border-gray-800 hover:shadow-lg transition-all flex flex-col">
+                        <div class="h-44 overflow-hidden">
+                            <img src="images\corporate.webp" alt="Corporate package" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                        </div>
+                        <div class="p-6 flex flex-col flex-1">
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <h3 class="font-bold text-primary dark:text-white text-lg">Corporate Elite</h3>
+                                <span class="px-2.5 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-bold whitespace-nowrap">20-100 guests</span>
+                            </div>
+                            <p class="text-slate-500 dark:text-gray-400 text-sm mb-4 flex-1">Branded cake, individual dessert boxes, custom logo cookies, and afternoon tea service.</p>
+                            <div class="flex items-end gap-1 mb-5">
+                                <span class="text-3xl font-serif font-bold text-primary dark:text-white">$349</span>
+                                <span class="text-slate-400 dark:text-gray-500 text-sm mb-0.5">/package</span>
+                            </div>
+                            <a href="orders.html" class="block w-full text-center py-3 rounded-full border-2 border-secondary/20 text-secondary font-bold text-sm hover:bg-secondary hover:text-white transition-all duration-300">
+                                Book Package
+                            </a>
+                        </div>
+                    </div>
+
+           
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ===== 5. Side-by-Side Comparison Table ===== -->
+        <section class="py-24 bg-slate-50 dark:bg-[#110A0C] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="text-center mb-14">
+                    <span class="text-secondary font-bold text-sm tracking-wider uppercase mb-3 block">Compare</span>
+                    <h2 class="text-3xl md:text-5xl font-serif font-bold text-primary dark:text-white mb-4">What's Included</h2>
+                    <p class="text-slate-600 dark:text-gray-400 max-w-lg mx-auto">A detailed look at what each tier includes — so you can choose with confidence.</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto bg-white dark:bg-[#2A1C20] rounded-2xl border border-slate-200 dark:border-gray-800 overflow-hidden">
+                    <!-- Header -->
+                    <div class="grid grid-cols-3 border-b border-slate-200 dark:border-gray-800">
+                        <div class="p-5 font-bold text-slate-500 dark:text-gray-400 text-sm">Feature</div>
+                        <div class="p-5 text-center font-bold text-primary dark:text-white text-sm border-x border-slate-200 dark:border-gray-800">Classic</div>
+                        <div class="p-5 text-center font-bold text-secondary text-sm">Premium / Signature</div>
+                    </div>
+                    <!-- Rows -->
+                    <div class="tbl-row"><div class="grid grid-cols-3"><div class="p-4 text-sm text-slate-600 dark:text-gray-400">Flavor options</div><div class="p-4 text-center text-sm font-medium text-primary dark:text-white border-x border-slate-100 dark:border-gray-800">6 classic flavors</div><div class="p-4 text-center text-sm font-medium text-primary dark:text-white">20+ artisan flavors</div></div></div>
+                    <div class="tbl-row"><div class="grid grid-cols-3"><div class="p-4 text-sm text-slate-600 dark:text-gray-400">Filling choices</div><div class="p-4 text-center text-sm font-medium text-primary dark:text-white border-x border-slate-100 dark:border-gray-800">Buttercream only</div><div class="p-4 text-center text-sm font-medium text-primary dark:text-white">Ganache, curd, praline, compote</div></div></div>
+                    <div class="tbl-row"><div class="grid grid-cols-3"><div class="p-4 text-sm text-slate-600 dark:text-gray-400">Custom message</div><div class="p-4 text-center text-sm text-primary dark:text-white border-x border-slate-100 dark:border-gray-800"><i class="fa-solid fa-check text-secondary"></i></div><div class="p-4 text-center text-sm text-primary dark:text-white"><i class="fa-solid fa-check text-secondary"></i></div></div></div>
+                    <div class="tbl-row"><div class="grid grid-cols-3"><div class="p-4 text-sm text-slate-600 dark:text-gray-400">Color matching</div><div class="p-4 text-center text-sm text-slate-300 dark:text-gray-600 border-x border-slate-100 dark:border-gray-800"><i class="fa-solid fa-minus"></i></div><div class="p-4 text-center text-sm text-primary dark:text-white"><i class="fa-solid fa-check text-secondary"></i></div></div></div>
+                    <div class="tbl-row"><div class="grid grid-cols-3"><div class="p-4 text-sm text-slate-600 dark:text-gray-400">Photo printing</div><div class="p-4 text-center text-sm text-slate-300 dark:text-gray-600 border-x border-slate-100 dark:border-gray-800"><i class="fa-solid fa-minus"></i></div><div class="p-4 text-center text-sm text-primary dark:text-white"><i class="fa-solid fa-check text-secondary"></i></div></div></div>
+                    <div class="tbl-row"><div class="grid grid-cols-3"><div class="p-4 text-sm text-slate-600 dark:text-gray-400">Size range</div><div class="p-4 text-center text-sm font-medium text-primary dark:text-white border-x border-slate-100 dark:border-gray-800">6" – 12"</div><div class="p-4 text-center text-sm font-medium text-primary dark:text-white">4" – 18" any shape</div></div></div>
+                    <div class="tbl-row"><div class="grid grid-cols-3"><div class="p-4 text-sm text-slate-600 dark:text-gray-400">Gold leaf accents</div><div class="p-4 text-center text-sm text-slate-300 dark:text-gray-600 border-x border-slate-100 dark:border-gray-800"><i class="fa-solid fa-minus"></i></div><div class="p-4 text-center text-sm text-primary dark:text-white">Signature only</div></div></div>
+                    <div class="tbl-row"><div class="grid grid-cols-3"><div class="p-4 text-sm text-slate-600 dark:text-gray-400">Free tasting session</div><div class="p-4 text-center text-sm text-slate-300 dark:text-gray-600 border-x border-slate-100 dark:border-gray-800"><i class="fa-solid fa-minus"></i></div><div class="p-4 text-center text-sm text-primary dark:text-white"><i class="fa-solid fa-check text-secondary"></i></div></div></div>
+                    <div class="tbl-row"><div class="grid grid-cols-3"><div class="p-4 text-sm text-slate-600 dark:text-gray-400">Delivery included</div><div class="p-4 text-center text-sm font-medium text-primary dark:text-white border-x border-slate-100 dark:border-gray-800">Orders over $50</div><div class="p-4 text-center text-sm font-medium text-primary dark:text-white">Always free</div></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 6. Size Guide with Live Estimator ===== -->
+        <section class="py-24 bg-white dark:bg-[#1A1114] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="text-center mb-14">
+                    <span class="text-secondary font-bold text-sm tracking-wider uppercase mb-3 block">Size Guide</span>
+                    <h2 class="text-3xl md:text-5xl font-serif font-bold text-primary dark:text-white mb-4">Find Your Perfect Size</h2>
+                    <p class="text-slate-600 dark:text-gray-400 max-w-lg mx-auto">Select your guest count and we'll recommend the right cake size with an instant estimate.</p>
+                </div>
+
+                <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Left: Size chart -->
+                    <div class="bg-slate-50 dark:bg-[#2A1C20] rounded-2xl p-6 md:p-8 border border-slate-200 dark:border-gray-800">
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-4 p-3 rounded-xl bg-white dark:bg-[#1A1114] border border-slate-200 dark:border-gray-700 hover:border-secondary/30 transition-all group">
+                                <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center shrink-0">
+                                    <span class="text-secondary font-bold text-sm">6"</span>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="font-bold text-primary dark:text-white text-sm">6 Inch Round</div>
+                                    <div class="text-slate-500 dark:text-gray-400 text-xs">8–10 servings</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-bold text-primary dark:text-white text-sm">$32</div>
+                                    <div class="text-slate-400 dark:text-gray-500 text-[10px]">from</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 p-3 rounded-xl bg-white dark:bg-[#1A1114] border border-slate-200 dark:border-gray-700 hover:border-secondary/30 transition-all group">
+                                <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center shrink-0">
+                                    <span class="text-secondary font-bold text-sm">8"</span>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="font-bold text-primary dark:text-white text-sm">8 Inch Round</div>
+                                    <div class="text-slate-500 dark:text-gray-400 text-xs">16–20 servings</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-bold text-primary dark:text-white text-sm">$52</div>
+                                    <div class="text-slate-400 dark:text-gray-500 text-[10px]">from</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 p-3 rounded-xl bg-white dark:bg-[#1A1114] border border-slate-200 dark:border-gray-700 hover:border-secondary/30 transition-all group">
+                                <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center shrink-0">
+                                    <span class="text-secondary font-bold text-sm">10"</span>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="font-bold text-primary dark:text-white text-sm">10 Inch Round</div>
+                                    <div class="text-slate-500 dark:text-gray-400 text-xs">28–34 servings</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-bold text-primary dark:text-white text-sm">$78</div>
+                                    <div class="text-slate-400 dark:text-gray-500 text-[10px]">from</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 p-3 rounded-xl bg-white dark:bg-[#1A1114] border border-slate-200 dark:border-gray-700 hover:border-secondary/30 transition-all group">
+                                <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center shrink-0">
+                                    <span class="text-secondary font-bold text-sm">12"</span>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="font-bold text-primary dark:text-white text-sm">12 Inch Round</div>
+                                    <div class="text-slate-500 dark:text-gray-400 text-xs">40–50 servings</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-bold text-primary dark:text-white text-sm">$110</div>
+                                    <div class="text-slate-400 dark:text-gray-500 text-[10px]">from</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 p-3 rounded-xl bg-white dark:bg-[#1A1114] border border-slate-200 dark:border-gray-700 hover:border-secondary/30 transition-all group">
+                                <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center shrink-0">
+                                    <span class="text-secondary font-bold text-sm">14"</span>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="font-bold text-primary dark:text-white text-sm">14 Inch Round</div>
+                                    <div class="text-slate-500 dark:text-gray-400 text-xs">60–75 servings</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-bold text-primary dark:text-white text-sm">$165</div>
+                                    <div class="text-slate-400 dark:text-gray-500 text-[10px]">from</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Live estimator -->
+                    <div class="flex flex-col justify-center">
+                        <div class="bg-gradient-to-br from-secondary/5 via-white to-secondary/3 dark:from-secondary/5 dark:via-[#2A1C20] dark:to-secondary/5 rounded-2xl p-8 border border-secondary/20">
+                            <h3 class="font-bold text-primary dark:text-white text-lg mb-2">Quick Estimate</h3>
+                            <p class="text-slate-500 dark:text-gray-400 text-sm mb-6">Enter your guest count for a price estimate.</p>
+                            <div class="mb-6">
+                                <label class="text-xs font-bold text-slate-500 dark:text-gray-400 uppercase tracking-wider mb-2 block">Number of Guests</label>
+                                <input type="number" id="guestInput" min="1" max="500" placeholder="e.g. 25" class="w-full px-5 py-3.5 rounded-xl bg-white dark:bg-[#1A1114] border border-slate-200 dark:border-gray-700 text-primary dark:text-white font-medium focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all" oninput="estimatePrice()" />
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 mb-6">
+                                <div class="bg-white dark:bg-[#1A1114] rounded-xl p-4 border border-slate-200 dark:border-gray-700">
+                                    <span class="text-[10px] uppercase tracking-wider text-slate-400 dark:text-gray-500 block mb-1">Recommended Size</span>
+                                    <span class="text-xl font-bold text-primary dark:text-white" id="estSize">—</span>
+                                </div>
+                                <div class="bg-white dark:bg-[#1A1114] rounded-xl p-4 border border-slate-200 dark:border-gray-700">
+                                    <span class="text-[10px] uppercase tracking-wider text-slate-400 dark:text-gray-500 block mb-1">Estimated Cost</span>
+                                    <span class="text-xl font-bold text-secondary" id="estCost">—</span>
+                                </div>
+                            </div>
+                            <a href="orders.html" class="block w-full text-center py-3.5 rounded-full bg-primary dark:bg-white dark:text-primary text-white font-bold text-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                                Start Your Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 7. Value Guarantees — Horizontal Scrolling Strip ===== -->
+        <section class="py-16 bg-primary dark:bg-[#110A0C] transition-colors duration-500 overflow-hidden">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center text-secondary mx-auto mb-3"><i class="fa-solid fa-shield-halved text-lg"></i></div>
+                        <h3 class="font-bold text-white text-sm mb-1">Price Match</h3>
+                        <p class="text-white/50 text-xs">We'll match any competitor's equivalent quote</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center text-secondary mx-auto mb-3"><i class="fa-solid fa-rotate-left text-lg"></i></div>
+                        <h3 class="font-bold text-white text-sm mb-1">Full Refund</h3>
+                        <p class="text-white/50 text-xs">Not happy? 100% money-back guarantee</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center text-secondary mx-auto mb-3"><i class="fa-solid fa-truck-fast text-lg"></i></div>
+                        <h3 class="font-bold text-white text-sm mb-1">Free Delivery</h3>
+                        <p class="text-white/50 text-xs">Complimentary delivery on Premium & up</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center text-secondary mx-auto mb-3"><i class="fa-solid fa-headset text-lg"></i></div>
+                        <h3 class="font-bold text-white text-sm mb-1">24/7 Support</h3>
+                        <p class="text-white/50 text-xs">Reach us anytime via chat, phone, or email</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 8. Final CTA — Discount Banner ===== -->
+        <section class="py-20 bg-white dark:bg-[#1A1114] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-secondary via-secondary to-pink-500">
+                    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iLjA1Ij48cGF0aCBkPSJNMzYgMzRhMiAyIDAgMSAxLTQgMCAyIDIgMCAwIDEgNCAwIi8+PC9nPjwvZz48L3N2Zz4=')] opacity-50"></div>
+                    <div class="relative z-10 flex flex-col lg:flex-row items-center gap-8 px-8 md:px-14 py-14 md:py-20">
+                        <div class="flex-1">
+                            <span class="inline-block px-4 py-1.5 rounded-full bg-white/20 text-white font-bold text-xs tracking-widest uppercase mb-5">First Order Special</span>
+                            <h2 class="text-3xl md:text-5xl font-serif font-bold text-white leading-tight mb-4">Get <span class="text-white/90">15% Off</span> Your First Cake</h2>
+                            <p class="text-white/70 text-lg max-w-lg">New to SweetStudio? Use code <span class="font-mono bg-white/15 px-2 py-0.5 rounded text-white font-bold">SWEET15</span> at checkout and save on any order.</p>
+                        </div>
+                        <div class="flex flex-col gap-3 shrink-0">
+                            <a href="signup.html" class="px-10 py-4 rounded-full bg-white text-secondary font-bold text-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center">
+                                Create Account & Save
+                            </a>
+                            <a href="orders.html" class="px-10 py-4 rounded-full border-2 border-white/30 text-white font-bold text-sm hover:bg-white/10 transition-all duration-300 text-center">
+                                Order Without Account
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="navbar.js"></script>
+    <script src="footer.js"></script>
+
+    <script>
+    // Price Toggle
+    let priceMode = 'slice';
+
+    function togglePriceMode() {
+        const toggle = document.getElementById('priceToggle');
+        const lblSlice = document.getElementById('lbl-slice');
+        const lblCake = document.getElementById('lbl-cake');
+
+        priceMode = priceMode === 'slice' ? 'cake' : 'slice';
+
+        toggle.classList.toggle('active', priceMode === 'cake');
+        lblSlice.classList.toggle('text-primary', priceMode === 'slice');
+        lblSlice.classList.toggle('dark:text-white', priceMode === 'slice');
+        lblSlice.classList.toggle('text-slate-400', priceMode !== 'slice');
+        lblSlice.classList.toggle('dark:text-gray-500', priceMode !== 'slice');
+        lblCake.classList.toggle('text-primary', priceMode === 'cake');
+        lblCake.classList.toggle('dark:text-white', priceMode === 'cake');
+        lblCake.classList.toggle('text-slate-400', priceMode !== 'cake');
+        lblCake.classList.toggle('dark:text-gray-500', priceMode !== 'cake');
+
+        document.querySelectorAll('.price-val').forEach(el => {
+            el.classList.add('switching');
+            setTimeout(() => {
+                el.textContent = priceMode === 'slice' ? el.dataset.slice : el.dataset.cake;
+                el.classList.remove('switching');
+                el.classList.add('switched');
+                setTimeout(() => el.classList.remove('switched'), 10);
+            }, 200);
+        });
+
+        document.querySelectorAll('.price-unit').forEach(el => {
+            el.textContent = priceMode === 'slice' ? '/slice' : '/cake';
+        });
+    }
+
+    // Add-ons
+    let addonTotal = 0;
+    const selectedAddons = {};
+
+    function toggleAddon(card, price, name) {
+        if (selectedAddons[name]) {
+            delete selectedAddons[name];
+            card.classList.remove('selected');
+            addonTotal -= price;
+        } else {
+            selectedAddons[name] = price;
+            card.classList.add('selected');
+            addonTotal += price;
+        }
+        const totalEl = document.getElementById('addonTotal');
+        totalEl.classList.remove('count-anim');
+        void totalEl.offsetWidth;
+        totalEl.textContent = '$' + addonTotal;
+        totalEl.classList.add('count-anim');
+    }
+
+    // Size Estimator
+    function estimatePrice() {
+        const guests = parseInt(document.getElementById('guestInput').value) || 0;
+        const sizeEl = document.getElementById('estSize');
+        const costEl = document.getElementById('estCost');
+
+        if (guests <= 0) {
+            sizeEl.textContent = '—';
+            costEl.textContent = '—';
+            return;
+        }
+
+        let size, cost;
+        if (guests <= 10) { size = '6"'; cost = 32; }
+        else if (guests <= 20) { size = '8"'; cost = 52; }
+        else if (guests <= 34) { size = '10"'; cost = 78; }
+        else if (guests <= 50) { size = '12"'; cost = 110; }
+        else if (guests <= 75) { size = '14"'; cost = 165; }
+        else { size = '16"+'; cost = Math.round(165 + (guests - 75) * 3.5); }
+
+        sizeEl.textContent = size + ' Round';
+        sizeEl.classList.remove('count-anim');
+        costEl.classList.remove('count-anim');
+        void sizeEl.offsetWidth;
+        sizeEl.classList.add('count-anim');
+        costEl.classList.add('count-anim');
+        costEl.textContent = '$' + cost;
+    }
+    </script>
+
+</body>
+</html>

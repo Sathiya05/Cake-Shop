@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SweetStudio | 404 - Page Not Found</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#523940',
+                        secondary: '#E75480',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes floatOrb { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-18px) scale(1.05); } }
+        .float-orb { animation: floatOrb 6s ease-in-out infinite; }
+        .float-orb-2 { animation: floatOrb 6s ease-in-out 1.2s infinite; }
+        .float-orb-3 { animation: floatOrb 6s ease-in-out 2.4s infinite; }
+
+        @keyframes drift { from { background-position: 0 0; } to { background-position: 40px 40px; } }
+        .dot-grid { background-image: radial-gradient(circle, rgba(231,84,128,0.18) 1.5px, transparent 1.5px); background-size: 32px 32px; }
+
+        .error-digit { animation: digitFloat 5s ease-in-out infinite; }
+        .error-digit:nth-child(2) { animation-delay: 0.4s; }
+        .error-digit:nth-child(3) { animation-delay: 0.8s; }
+        @keyframes digitFloat { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-10px) rotate(1deg); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+        .fade-in { opacity: 0; animation: fadeIn 0.6s ease-out forwards; }
+
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(231,84,128,0.5); } 70% { box-shadow: 0 0 0 8px rgba(231,84,128,0); } 100% { box-shadow: 0 0 0 0 rgba(231,84,128,0); } }
+        .pulse { animation: pulse 2s ease infinite; }
+        .fade-in-1 { animation-delay: 0.15s; }
+        .fade-in-2 { animation-delay: 0.3s; }
+        .fade-in-3 { animation-delay: 0.45s; }
+        .fade-in-4 { animation-delay: 0.6s; }
+
+        .quick-link { transition: all 0.3s ease; }
+        .quick-link:hover { transform: translateY(-3px); border-color: rgba(231,84,128,0.4); box-shadow: 0 10px 25px -8px rgba(231,84,128,0.25); }
+        .quick-link:hover .quick-icon { background: rgba(231,84,128,0.15); transform: scale(1.1); }
+        .quick-icon { transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="bg-white dark:bg-[#1A1114] text-slate-900 dark:text-gray-200 font-sans antialiased selection:bg-secondary selection:text-white transition-colors duration-500">
+
+
+    <main class="pt-20 md:pt-24 min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-white dark:bg-[#1A1114] transition-colors duration-500">
+
+        <!-- Decorative background -->
+        <div class="absolute inset-0 dot-grid opacity-60 dark:opacity-30"></div>
+        <div class="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-secondary/10 blur-2xl float-orb"></div>
+        <div class="absolute bottom-0 -left-24 w-80 h-80 rounded-full bg-primary/10 blur-2xl float-orb-2"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-96 bg-gradient-to-r from-secondary/5 via-transparent to-secondary/5 blur-3xl"></div>
+        <div class="absolute top-16 left-[8%] w-6 h-6 rounded-full bg-secondary/15 float-orb hidden sm:block"></div>
+        <div class="absolute bottom-24 right-[10%] w-4 h-4 rounded-lg bg-primary/15 rotate-12 float-orb-3 hidden sm:block"></div>
+
+        <div class="relative z-10 w-full max-w-[1440px] mx-auto px-6 lg:px-10 py-16 md:py-20 flex flex-col items-center text-center">
+
+            <!-- 404 graphic -->
+            <div class="flex items-center justify-center gap-3 sm:gap-5 mb-8 fade-in">
+                <span class="error-digit text-[6rem] sm:text-[9rem] md:text-[11rem] lg:text-[13rem] font-serif font-black text-primary dark:text-white leading-none">4</span>
+                <div class="error-digit w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full bg-secondary/10 border-2 border-secondary/30 flex items-center justify-center relative">
+                    <i class="fa-solid fa-cake-candles text-secondary text-3xl sm:text-5xl md:text-6xl"></i>
+                    <span class="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-secondary pulse"></span>
+                </div>
+                <span class="error-digit text-[6rem] sm:text-[9rem] md:text-[11rem] lg:text-[13rem] font-serif font-black text-primary dark:text-white leading-none">4</span>
+            </div>
+
+            <!-- Heading -->
+            <div class="fade-in fade-in-1">
+                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 text-secondary font-bold text-xs tracking-widest uppercase mb-5">
+                    <i class="fa-solid fa-map-pin"></i> Lost in the Kitchen
+                </span>
+                <h1 class="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-primary dark:text-white mb-4">
+                    This Page Hasn't Been Frosted Yet
+                </h1>
+                <p class="text-slate-500 dark:text-gray-400 text-sm sm:text-base md:text-lg max-w-xl mx-auto leading-relaxed">
+                    We couldn't find the page you're looking for. It may have moved, been renamed, or simply crumbled into crumbs. Let's get you back to something sweet.
+                </p>
+            </div>
+
+            <!-- Search bar -->
+            <form onsubmit="handleSearch(event)" class="fade-in fade-in-2 w-full max-w-md mt-8 mb-6">
+                <div class="relative">
+                    <div class="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-gray-500"><i class="fa-solid fa-magnifying-glass text-sm"></i></div>
+                    <input type="search" id="searchInput" placeholder="Search our menu..." class="w-full pl-12 pr-28 py-4 rounded-full bg-slate-50 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-700 text-primary dark:text-white font-medium focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/15 transition-all" />
+                    <button type="submit" class="absolute right-1.5 top-1/2 -translate-y-1/2 px-5 py-2.5 rounded-full bg-secondary text-white text-xs font-bold hover:shadow-lg hover:shadow-secondary/30 transition-all">
+                        Search
+                    </button>
+                </div>
+            </form>
+
+            <!-- Actions -->
+            <div class="fade-in fade-in-2 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+                <a href="index.html" class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-secondary text-white font-bold text-sm hover:shadow-xl hover:shadow-secondary/30 hover:-translate-y-1 transition-all duration-300">
+                    <i class="fa-solid fa-house"></i> Back to Home
+                </a>
+                <a href="menus.html" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-primary/15 dark:border-gray-700 text-primary dark:text-white font-bold text-sm hover:bg-primary hover:text-white hover:border-primary transition-all duration-300">
+                    <i class="fa-solid fa-utensils"></i> Browse Menu
+                </a>
+            </div>
+
+     
+
+    <script>
+        function handleSearch(e) {
+            e.preventDefault();
+            const q = document.getElementById('searchInput').value.trim().toLowerCase();
+            if (!q) return;
+            const pages = [
+                { name: 'flavors', url: 'flavors.html', keywords: ['flavor', 'sponge', 'filling', 'frosting', 'vanilla', 'chocolate', 'cake'] },
+                { name: 'menu', url: 'menus.html', keywords: ['menu', 'pastry', 'macaron', 'tart', 'cookie', 'dessert'] },
+                { name: 'pricing', url: 'pricing.html', keywords: ['price', 'pricing', 'cost', 'package', 'wedding', 'birthday'] },
+                { name: 'orders', url: 'orders.html', keywords: ['order', 'custom', 'delivery', 'pickup'] },
+                { name: 'about', url: 'about.html', keywords: ['about', 'story'] },
+                { name: 'contact', url: 'contact.html', keywords: ['contact', 'email', 'phone'] }
+            ];
+            const target = pages.find(p => p.keywords.some(k => q.includes(k)));
+            window.location.href = target ? target.url : 'index.html';
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SweetStudio | Flavors & Fillings - Taste Our World</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#523940',
+                        secondary: '#E75480',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .flavor-card:hover .flavor-ring { transform: rotate(15deg) scale(1.08); }
+        .builder-step.active .step-dot { background: #E75480; box-shadow: 0 0 0 4px rgba(231,84,128,0.2); }
+        .builder-step.active .step-label { color: #E75480; }
+        .choice-btn.selected { border-color: #E75480 !important; background: rgba(231,84,128,0.08); }
+        .filling-slide { scroll-snap-align: center; }
+        .filling-scroll { scroll-snap-type: x mandatory; }
+        .filling-scroll::-webkit-scrollbar { display: none; }
+        @keyframes pulse-ring { 0% { transform: scale(1); opacity: 0.5; } 100% { transform: scale(1.5); opacity: 0; } }
+        .pulse-dot::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid #E75480; animation: pulse-ring 1.5s ease-out infinite; }
+    </style>
+</head>
+<body class="bg-white dark:bg-[#1A1114] text-slate-900 dark:text-gray-200 font-sans antialiased selection:bg-secondary selection:text-white transition-colors duration-500">
+
+    <div id="navbar"></div>
+
+    <main class="pt-20 md:pt-24">
+
+        <!-- ===== 1. Full-Screen Split Hero ===== -->
+        <section class="relative min-h-[calc(100vh-5rem)] md:min-h-[calc(100vh-6rem)] flex items-center overflow-hidden bg-primary dark:bg-[#110A0C]">
+            <!-- Right image: tablet+ -->
+            <div class="absolute top-0 right-0 w-1/2 h-full hidden md:block">
+                <img src="images/img7.avif" alt="Flavor assortment" class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-r from-primary via-primary/60 to-transparent dark:from-[#110A0C] dark:via-[#110A0C]/60 dark:to-transparent"></div>
+            </div>
+            <!-- Mobile background -->
+            <img src="images/img7.avif" alt="Flavor assortment" class="absolute inset-0 w-full h-full object-cover opacity-25 md:hidden" />
+            <div class="absolute inset-0 bg-gradient-to-b from-primary/95 via-primary/80 to-primary/95 md:hidden dark:from-[#110A0C]/98 dark:via-[#110A0C]/85 dark:to-[#110A0C]/98"></div>
+
+            <!-- Floating decorative dots -->
+            <div class="absolute top-[20%] right-[15%] w-3 h-3 rounded-full bg-secondary/40 hidden lg:block"></div>
+            <div class="absolute bottom-[30%] right-[25%] w-2 h-2 rounded-full bg-white/30 hidden lg:block"></div>
+            <div class="absolute top-[40%] right-[8%] w-4 h-4 rounded-full border border-white/20 hidden lg:block"></div>
+
+            <div class="max-w-[1440px] w-full mx-auto px-6 lg:px-10 relative z-10 py-16 md:py-20">
+                <div class="max-w-xl lg:max-w-2xl">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 text-white/90 font-bold text-xs tracking-widest uppercase mb-6">
+                        <span class="w-2 h-2 rounded-full bg-secondary inline-block"></span> 30+ Signature Flavors
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-7xl font-serif font-bold text-white leading-[1.08] mb-6">
+                        A World of<br/> <span class="text-secondary">Flavor</span> Awaits
+                    </h1>
+                    <p class="text-lg md:text-xl text-white/60 leading-relaxed mb-10 max-w-lg">
+                        From classic Madagascar vanilla to exotic yuzu passionfruit — explore our handcrafted flavor library and discover your perfect combination.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#flavors" class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-secondary text-white font-bold hover:shadow-xl hover:shadow-secondary/30 hover:-translate-y-1 transition-all duration-300">
+                            Explore Flavors <i class="fa-solid fa-arrow-down"></i>
+                        </a>
+                        <a href="menu.html" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-white/25 text-white font-bold hover:bg-white/10 transition-all duration-300">
+                            View Full Menu
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 2. Flavor Category Pill Cards ===== -->
+        <section class="py-20 bg-white dark:bg-[#1A1114] transition-colors duration-500" id="flavors">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <span class="text-secondary font-bold text-sm tracking-wider uppercase mb-3 block">Browse By Family</span>
+                    <h2 class="text-3xl md:text-5xl font-serif font-bold text-primary dark:text-white mb-4">Flavor Categories</h2>
+                    <p class="text-slate-600 dark:text-gray-400">Each family tells a different story. Find yours.</p>
+                </div>
+
+                <!-- Row 1 - offset left -->
+                <div class="flex flex-wrap justify-center gap-4 mb-4">
+                    <div class="flavor-card flex items-center gap-4 px-6 py-4 rounded-2xl bg-slate-50 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-800 hover:border-secondary/40 hover:shadow-lg transition-all duration-500 group cursor-pointer">
+                        <div class="flavor-ring w-14 h-14 rounded-full overflow-hidden border-2 border-slate-200 dark:border-gray-700 group-hover:border-secondary transition-all duration-500">
+                            <img src="images/img2.webp" alt="Classic" class="w-full h-full object-cover" />
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-primary dark:text-white text-sm">Classics</h3>
+                            <p class="text-slate-500 dark:text-gray-400 text-xs">8 flavors</p>
+                        </div>
+                        <i class="fa-solid fa-arrow-right text-secondary text-xs ml-2 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                    <div class="flavor-card flex items-center gap-4 px-6 py-4 rounded-2xl bg-slate-50 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-800 hover:border-secondary/40 hover:shadow-lg transition-all duration-500 group cursor-pointer">
+                        <div class="flavor-ring w-14 h-14 rounded-full overflow-hidden border-2 border-slate-200 dark:border-gray-700 group-hover:border-secondary transition-all duration-500">
+                            <img src="images/img3.avif" alt="Fruity" class="w-full h-full object-cover" />
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-primary dark:text-white text-sm">Fruity</h3>
+                            <p class="text-slate-500 dark:text-gray-400 text-xs">7 flavors</p>
+                        </div>
+                        <i class="fa-solid fa-arrow-right text-secondary text-xs ml-2 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                    <div class="flavor-card flex items-center gap-4 px-6 py-4 rounded-2xl bg-slate-50 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-800 hover:border-secondary/40 hover:shadow-lg transition-all duration-500 group cursor-pointer">
+                        <div class="flavor-ring w-14 h-14 rounded-full overflow-hidden border-2 border-slate-200 dark:border-gray-700 group-hover:border-secondary transition-all duration-500">
+                            <img src="images/img4.avif" alt="Chocolate" class="w-full h-full object-cover" />
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-primary dark:text-white text-sm">Chocolate</h3>
+                            <p class="text-slate-500 dark:text-gray-400 text-xs">6 flavors</p>
+                        </div>
+                        <i class="fa-solid fa-arrow-right text-secondary text-xs ml-2 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                </div>
+                <!-- Row 2 - offset right -->
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div class="flavor-card flex items-center gap-4 px-6 py-4 rounded-2xl bg-slate-50 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-800 hover:border-secondary/40 hover:shadow-lg transition-all duration-500 group cursor-pointer">
+                        <div class="flavor-ring w-14 h-14 rounded-full overflow-hidden border-2 border-slate-200 dark:border-gray-700 group-hover:border-secondary transition-all duration-500">
+                            <img src="images/img5.avif" alt="Floral" class="w-full h-full object-cover" />
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-primary dark:text-white text-sm">Floral</h3>
+                            <p class="text-slate-500 dark:text-gray-400 text-xs">5 flavors</p>
+                        </div>
+                        <i class="fa-solid fa-arrow-right text-secondary text-xs ml-2 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                    <div class="flavor-card flex items-center gap-4 px-6 py-4 rounded-2xl bg-slate-50 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-800 hover:border-secondary/40 hover:shadow-lg transition-all duration-500 group cursor-pointer">
+                        <div class="flavor-ring w-14 h-14 rounded-full overflow-hidden border-2 border-slate-200 dark:border-gray-700 group-hover:border-secondary transition-all duration-500">
+                            <img src="images/img6.webp" alt="Nutty" class="w-full h-full object-cover" />
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-primary dark:text-white text-sm">Nutty</h3>
+                            <p class="text-slate-500 dark:text-gray-400 text-xs">5 flavors</p>
+                        </div>
+                        <i class="fa-solid fa-arrow-right text-secondary text-xs ml-2 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                    <div class="flavor-card flex items-center gap-4 px-6 py-4 rounded-2xl bg-slate-50 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-800 hover:border-secondary/40 hover:shadow-lg transition-all duration-500 group cursor-pointer">
+                        <div class="flavor-ring w-14 h-14 rounded-full overflow-hidden border-2 border-slate-200 dark:border-gray-700 group-hover:border-secondary transition-all duration-500">
+                            <img src="images/img1.avif" alt="Seasonal" class="w-full h-full object-cover" />
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-primary dark:text-white text-sm">Seasonal</h3>
+                            <p class="text-slate-500 dark:text-gray-400 text-xs">4 flavors</p>
+                        </div>
+                        <i class="fa-solid fa-arrow-right text-secondary text-xs ml-2 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 3. Individual Flavor Cards — Dense Grid ===== -->
+        <section class="py-24 bg-slate-50 dark:bg-[#110A0C] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <span class="text-secondary font-bold text-sm tracking-wider uppercase mb-3 block">Our Library</span>
+                    <h2 class="text-3xl md:text-5xl font-serif font-bold text-primary dark:text-white mb-4">Signature Flavors</h2>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <!-- Lemon Raspberry -->
+                    <div class="relative rounded-2xl overflow-hidden group cursor-pointer h-72">
+                        <img src="images\Lemon Raspberry.avif" alt="Lemon Raspberry" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute inset-0 p-5 flex flex-col justify-end">
+                            <span class="px-2 py-0.5 rounded-full bg-secondary text-white text-[10px] font-bold w-fit mb-2">Fruity</span>
+                            <h3 class="font-bold text-white text-base">Lemon Raspberry</h3>
+                            <p class="text-white/60 text-xs leading-relaxed mt-1">Bright lemon sponge with tart raspberry compote and vanilla buttercream.</p>
+                        </div>
+                    </div>
+
+                    <!-- Mocha Hazelnut -->
+                    <div class="relative rounded-2xl overflow-hidden group cursor-pointer h-72">
+                        <img src="images\Mocha Hazelnut.webp" alt="Mocha Hazelnut" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute inset-0 p-5 flex flex-col justify-end">
+                            <span class="px-2 py-0.5 rounded-full bg-amber-700/80 text-white text-[10px] font-bold w-fit mb-2 backdrop-blur-sm">Chocolate</span>
+                            <h3 class="font-bold text-white text-base">Mocha Hazelnut</h3>
+                            <p class="text-white/60 text-xs leading-relaxed mt-1">Rich espresso chocolate cake with creamy hazelnut praline filling.</p>
+                        </div>
+                    </div>
+
+                    <!-- Pistachio Rose -->
+                    <div class="relative rounded-2xl overflow-hidden group cursor-pointer h-72">
+                        <img src="images\Pistachio Rosewater.webp" alt="Pistachio Rose" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute inset-0 p-5 flex flex-col justify-end">
+                            <span class="px-2 py-0.5 rounded-full bg-rose-500/80 text-white text-[10px] font-bold w-fit mb-2 backdrop-blur-sm">Floral</span>
+                            <h3 class="font-bold text-white text-base">Pistachio Rose</h3>
+                            <p class="text-white/60 text-xs leading-relaxed mt-1">Earthy pistachio cake accented with rosewater mascarpone cream.</p>
+                        </div>
+                    </div>
+
+                    <!-- Vanilla Caramel -->
+                    <div class="relative rounded-2xl overflow-hidden group cursor-pointer h-72">
+                        <img src="images\Vanilla Bean Caramel.webp" alt="Vanilla Caramel" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute inset-0 p-5 flex flex-col justify-end">
+                            <div class="flex gap-1.5 mb-2">
+                                <span class="px-2 py-0.5 rounded-full bg-secondary text-white text-[10px] font-bold">Classic</span>
+                                <span class="px-2 py-0.5 rounded-full bg-white/20 text-white text-[10px] font-medium backdrop-blur-sm">Popular</span>
+                            </div>
+                            <h3 class="font-bold text-white text-base">Vanilla Caramel</h3>
+                            <p class="text-white/60 text-xs leading-relaxed mt-1">Madagascar vanilla bean sponge with salted caramel drip and Swiss meringue.</p>
+                        </div>
+                    </div>
+
+                    <!-- Matcha White Choc -->
+                    <div class="relative rounded-2xl overflow-hidden group cursor-pointer h-72">
+                        <img src="images\Matcha White Choc.webp" alt="Matcha White Choc" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute inset-0 p-5 flex flex-col justify-end">
+                            <span class="px-2 py-0.5 rounded-full bg-emerald-500/80 text-white text-[10px] font-bold w-fit mb-2 backdrop-blur-sm">Unique</span>
+                            <h3 class="font-bold text-white text-base">Matcha White Choc</h3>
+                            <p class="text-white/60 text-xs leading-relaxed mt-1">Ceremonial grade matcha cake with white chocolate ganache and mochi bits.</p>
+                        </div>
+                    </div>
+
+                    <!-- Blueberry Lavender -->
+                    <div class="relative rounded-2xl overflow-hidden group cursor-pointer h-72">
+                        <img src="images\Blueberry Lavender.webp" alt="Blueberry Lavender" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute inset-0 p-5 flex flex-col justify-end">
+                            <span class="px-2 py-0.5 rounded-full bg-purple-500/80 text-white text-[10px] font-bold w-fit mb-2 backdrop-blur-sm">Floral</span>
+                            <h3 class="font-bold text-white text-base">Blueberry Lavender</h3>
+                            <p class="text-white/60 text-xs leading-relaxed mt-1">Wild blueberry sponge with culinary lavender buttercream and lemon zest.</p>
+                        </div>
+                    </div>
+
+                    <!-- Toffee Pecan -->
+                    <div class="relative rounded-2xl overflow-hidden group cursor-pointer h-72">
+                        <img src="images\Toffee Pecan.avif" alt="Toffee Pecan" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute inset-0 p-5 flex flex-col justify-end">
+                            <span class="px-2 py-0.5 rounded-full bg-amber-600/80 text-white text-[10px] font-bold w-fit mb-2 backdrop-blur-sm">Nutty</span>
+                            <h3 class="font-bold text-white text-base">Toffee Pecan</h3>
+                            <p class="text-white/60 text-xs leading-relaxed mt-1">Buttery brown sugar sponge with toffee sauce and candied pecan crunch.</p>
+                        </div>
+                    </div>
+
+                    <!-- Spiced Chai -->
+                    <div class="relative rounded-2xl overflow-hidden group cursor-pointer h-72">
+                        <img src="images\Spiced Chai.webp" alt="Spiced Chai" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute inset-0 p-5 flex flex-col justify-end">
+                            <span class="px-2 py-0.5 rounded-full bg-red-500/80 text-white text-[10px] font-bold w-fit mb-2 backdrop-blur-sm">Seasonal</span>
+                            <h3 class="font-bold text-white text-base">Spiced Chai</h3>
+                            <p class="text-white/60 text-xs leading-relaxed mt-1">Warm cardamom, cinnamon & ginger sponge with cream cheese frosting.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 4. Interactive Flavor Builder ===== -->
+        <section class="py-24 bg-white dark:bg-[#1A1114] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <span class="text-secondary font-bold text-sm tracking-wider uppercase mb-3 block">Build Your Own</span>
+                    <h2 class="text-3xl md:text-5xl font-serif font-bold text-primary dark:text-white mb-4">Flavor Builder</h2>
+                    <p class="text-slate-600 dark:text-gray-400">Select your sponge, filling, and frosting to preview your dream combination.</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <!-- Step indicators -->
+                    <div class="flex items-center justify-center gap-2 sm:gap-4 mb-12">
+                        <div class="builder-step active flex items-center gap-2" data-step="1">
+                            <div class="step-dot relative w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white font-bold text-sm">1</div>
+                            <span class="step-label text-secondary font-bold text-sm hidden sm:block">Sponge</span>
+                        </div>
+                        <div class="w-8 sm:w-16 h-px bg-slate-200 dark:bg-gray-700"></div>
+                        <div class="builder-step flex items-center gap-2" data-step="2">
+                            <div class="step-dot relative w-10 h-10 rounded-full bg-slate-200 dark:bg-gray-700 flex items-center justify-center text-slate-500 dark:text-gray-400 font-bold text-sm">2</div>
+                            <span class="step-label text-slate-500 dark:text-gray-400 font-bold text-sm hidden sm:block">Filling</span>
+                        </div>
+                        <div class="w-8 sm:w-16 h-px bg-slate-200 dark:bg-gray-700"></div>
+                        <div class="builder-step flex items-center gap-2" data-step="3">
+                            <div class="step-dot relative w-10 h-10 rounded-full bg-slate-200 dark:bg-gray-700 flex items-center justify-center text-slate-500 dark:text-gray-400 font-bold text-sm">3</div>
+                            <span class="step-label text-slate-500 dark:text-gray-400 font-bold text-sm hidden sm:block">Frosting</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 1: Sponge -->
+                    <div id="step1" class="builder-content">
+                        <h3 class="text-center text-lg font-bold text-primary dark:text-white mb-6">Choose Your Sponge</h3>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                            <button class="choice-btn p-4 rounded-xl border-2 border-slate-200 dark:border-gray-700 text-center hover:border-secondary/50 transition-all" onclick="selectChoice(this, 'sponge', 'Classic Vanilla')">
+                                <i class="fa-solid fa-cookie text-2xl mb-2 text-secondary"></i>
+                                <div class="text-sm font-bold text-primary dark:text-white">Classic Vanilla</div>
+                            </button>
+                            <button class="choice-btn p-4 rounded-xl border-2 border-slate-200 dark:border-gray-700 text-center hover:border-secondary/50 transition-all" onclick="selectChoice(this, 'sponge', 'Rich Chocolate')">
+                                <i class="fa-solid fa-cookie-bite text-2xl mb-2 text-amber-800 dark:text-amber-400"></i>
+                                <div class="text-sm font-bold text-primary dark:text-white">Rich Chocolate</div>
+                            </button>
+                            <button class="choice-btn p-4 rounded-xl border-2 border-slate-200 dark:border-gray-700 text-center hover:border-secondary/50 transition-all" onclick="selectChoice(this, 'sponge', 'Red Velvet')">
+                                <i class="fa-solid fa-heart text-2xl mb-2 text-red-500"></i>
+                                <div class="text-sm font-bold text-primary dark:text-white">Red Velvet</div>
+                            </button>
+                            <button class="choice-btn p-4 rounded-xl border-2 border-slate-200 dark:border-gray-700 text-center hover:border-secondary/50 transition-all" onclick="selectChoice(this, 'sponge', 'Lemon Zest')">
+                                <i class="fa-solid fa-lemon text-2xl mb-2 text-yellow-500"></i>
+                                <div class="text-sm font-bold text-primary dark:text-white">Lemon Zest</div>
+                            </button>
+                            <button class="choice-btn p-4 rounded-xl border-2 border-slate-200 dark:border-gray-700 text-center hover:border-secondary/50 transition-all" onclick="selectChoice(this, 'sponge', 'Pistachio')">
+                                <i class="fa-solid fa-seedling text-2xl mb-2 text-emerald-600 dark:text-emerald-400"></i>
+                                <div class="text-sm font-bold text-primary dark:text-white">Pistachio</div>
+                            </button>
+                            <button class="choice-btn p-4 rounded-xl border-2 border-slate-200 dark:border-gray-700 text-center hover:border-secondary/50 transition-all" onclick="selectChoice(this, 'sponge', 'Espresso')">
+                                <i class="fa-solid fa-mug-hot text-2xl mb-2 text-amber-700 dark:text-amber-400"></i>
+                                <div class="text-sm font-bold text-primary dark:text-white">Espresso</div>
+                            </button>
+                            <button class="choice-btn p-4 rounded-xl border-2 border-slate-200 dark:border-gray-700 text-center hover:border-secondary/50 transition-all" onclick="selectChoice(this, 'sponge', 'Strawberry')">
+                                <i class="fa-solid fa-apple-whole text-2xl mb-2 text-rose-500"></i>
+                                <div class="text-sm font-bold text-primary dark:text-white">Strawberry</div>
+                            </button>
+                            <button class="choice-btn p-4 rounded-xl border-2 border-slate-200 dark:border-gray-700 text-center hover:border-secondary/50 transition-all" onclick="selectChoice(this, 'sponge', 'Chai Spice')">
+                                <i class="fa-solid fa-fire text-2xl mb-2 text-orange-500"></i>
+                                <div class="text-sm font-bold text-primary dark:text-white">Chai Spice</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Filling -->
+                    <div id="step2" class="builder-content hidden">
+                        <h3 class="text-center text-lg font-bold text-primary dark:text-white mb-6">Choose Your Filling</h3>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                            <button class="choice-btn p-4 rounded-xl border-2 border-slate-200 dark:border-gray-700 text-center hover:border-secondary/50 transition-all" onclick="selectChoice(this, 'filling', 'Raspberry Compote')">
+                                <i class="fa-solid fa-bowl-food text-2xl mb-2 text-rose-500"></i>
+                                <div class="text-sm font-bold text-primary dark:text-white">Raspberry Compote</div>
+                            </button>
+                            <button class="choice-btn p-4 rounded-xl border-2 border-slate-200 dark:border-gray-700 text-center hover:border-secondary/50 transition-all" onclick="selectChoice(this, 'filling', 'Salted Caramel')">
+                                <i class="fa-solid fa-droplet text-2xl mb-2 text-amber-600"></i>
+                                <div class="text-sm font-bold text-primary dark:text-white">Salted Caramel</div>
+                            </button>
+                            <button class="choice-btn p-4 rounded-xl border-2 border-slate-200 dark:border-gray-700 text-center hover:border-secondary/50 transition-all" onclick="selectChoice(this, 'filling', 'Hazelnut Praline')">
+                                <i class="fa-solid fa-leaf text-2xl mb-2 text-amber-800 dark:text-amber-400"></i>
+                                <div class="text-sm font-bold text-primary dark:text-white">Hazelnut Praline</div>
+                            </button>
+                            <button class="choice-btn p-4 rounded-xl border-2 border-slate-200 dark:border-gray-700 text-center hover:border-secondary/50 transition-all" onclick="selectChoice(this, 'filling', 'Lemon Curd')">
+                                <i class="fa-solid fa-lemon text-2xl mb-2 text-yellow-500"></i>
+                                <div class="text-sm font-bold text-primary dark:text-white">Lemon Curd</div>
+                            </button>
+                            <button class="choice-btn p-4 rounded-xl border-2 border-slate-200 dark:border-gray-700 text-center hover:border-secondary/50 transition-all" onclick="selectChoice(this, 'filling', 'Chocolate Ganache')">
+                                <i class="fa-solid fa-square text-2xl mb-2 text-amber-900 dark:text-amber-500"></i>
+                                <div class="text-sm font-bold text-primary dark:text-white">Chocolate Ganache</div>
+                            </button>
+                            <button class="choice-btn p-4 rounded-xl border-2 border-slate-200 dark:border-gray-700 text-center hover:border-secondary/50 transition-all" onclick="selectChoice(this, 'filling', 'Passionfruit')">
+                                <i class="fa-solid fa-sun text-2xl mb-2 text-orange-500"></i>
+                                <div class="text-sm font-bold text-primary dark:text-white">Passionfruit</div>
+                            </button>
+                            <button class="choice-btn p-4 rounded-xl border-2 border-slate-200 dark:border-gray-700 text-center hover:border-secondary/50 transition-all" onclick="selectChoice(this, 'filling', 'Mascarpone')">
+                                <i class="fa-solid fa-cloud text-2xl mb-2 text-slate-400"></i>
+                                <div class="text-sm font-bold text-primary dark:text-white">Mascarpone</div>
+                            </button>
+                            <button class="choice-btn p-4 rounded-xl border-2 border-slate-200 dark:border-gray-700 text-center hover:border-secondary/50 transition-all" onclick="selectChoice(this, 'filling', 'Berry Jam')">
+                                <i class="fa-solid fa-cubes-stacked text-2xl mb-2 text-purple-500"></i>
+                                <div class="text-sm font-bold text-primary dark:text-white">Mixed Berry Jam</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Frosting -->
+                    <div id="step3" class="builder-content hidden">
+                        <h3 class="text-center text-lg font-bold text-primary dark:text-white mb-6">Choose Your Frosting</h3>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                            <button class="choice-btn p-4 rounded-xl border-2 border-slate-200 dark:border-gray-700 text-center hover:border-secondary/50 transition-all" onclick="selectChoice(this, 'frosting', 'Swiss Meringue')">
+                                <i class="fa-solid fa-ice-cream text-2xl mb-2 text-amber-300"></i>
+                                <div class="text-sm font-bold text-primary dark:text-white">Swiss Meringue</div>
+                            </button>
+                            <button class="choice-btn p-4 rounded-xl border-2 border-slate-200 dark:border-gray-700 text-center hover:border-secondary/50 transition-all" onclick="selectChoice(this, 'frosting', 'Cream Cheese')">
+                                <i class="fa-solid fa-circle text-2xl mb-2 text-yellow-400"></i>
+                                <div class="text-sm font-bold text-primary dark:text-white">Cream Cheese</div>
+                            </button>
+                            <button class="choice-btn p-4 rounded-xl border-2 border-slate-200 dark:border-gray-700 text-center hover:border-secondary/50 transition-all" onclick="selectChoice(this, 'frosting', 'Chocolate Buttercream')">
+                                <i class="fa-solid fa-grip-lines text-2xl mb-2 text-amber-800 dark:text-amber-500"></i>
+                                <div class="text-sm font-bold text-primary dark:text-white">Choc Buttercream</div>
+                            </button>
+                            <button class="choice-btn p-4 rounded-xl border-2 border-slate-200 dark:border-gray-700 text-center hover:border-secondary/50 transition-all" onclick="selectChoice(this, 'frosting', 'Ganache Drip')">
+                                <i class="fa-solid fa-droplet text-2xl mb-2 text-amber-700"></i>
+                                <div class="text-sm font-bold text-primary dark:text-white">Ganache Drip</div>
+                            </button>
+                            <button class="choice-btn p-4 rounded-xl border-2 border-slate-200 dark:border-gray-700 text-center hover:border-secondary/50 transition-all" onclick="selectChoice(this, 'frosting', 'Ermine Frosting')">
+                                <i class="fa-solid fa-cloud text-2xl mb-2 text-amber-200"></i>
+                                <div class="text-sm font-bold text-primary dark:text-white">Ermine Frosting</div>
+                            </button>
+                            <button class="choice-btn p-4 rounded-xl border-2 border-slate-200 dark:border-gray-700 text-center hover:border-secondary/50 transition-all" onclick="selectChoice(this, 'frosting', 'Fondant')">
+                                <i class="fa-solid fa-layer-group text-2xl mb-2 text-pink-400"></i>
+                                <div class="text-sm font-bold text-primary dark:text-white">Fondant</div>
+                            </button>
+                            <button class="choice-btn p-4 rounded-xl border-2 border-slate-200 dark:border-gray-700 text-center hover:border-secondary/50 transition-all" onclick="selectChoice(this, 'frosting', 'Whipped Cream')">
+                                <i class="fa-solid fa-wind text-2xl mb-2 text-sky-400"></i>
+                                <div class="text-sm font-bold text-primary dark:text-white">Whipped Cream</div>
+                            </button>
+                            <button class="choice-btn p-4 rounded-xl border-2 border-slate-200 dark:border-gray-700 text-center hover:border-secondary/50 transition-all" onclick="selectChoice(this, 'frosting', 'Naked (No Frosting)')">
+                                <i class="fa-solid fa-ban text-2xl mb-2 text-slate-400"></i>
+                                <div class="text-sm font-bold text-primary dark:text-white">Naked Style</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Preview -->
+                    <div class="mt-10 bg-slate-50 dark:bg-[#2A1C20] rounded-2xl p-6 md:p-8 border border-slate-200 dark:border-gray-800" id="builderPreview">
+                        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                            <div class="text-center md:text-left">
+                                <h4 class="text-sm font-bold text-slate-500 dark:text-gray-400 uppercase tracking-wider mb-3">Your Creation</h4>
+                                <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+                                    <div class="px-4 py-2 rounded-xl bg-white dark:bg-[#1A1114] border border-slate-200 dark:border-gray-700">
+                                        <span class="text-[10px] uppercase tracking-wider text-slate-400 dark:text-gray-500 block">Sponge</span>
+                                        <span class="text-sm font-bold text-primary dark:text-white" id="preview-sponge">Select...</span>
+                                    </div>
+                                    <div class="text-2xl text-slate-300 dark:text-gray-600 self-center">+</div>
+                                    <div class="px-4 py-2 rounded-xl bg-white dark:bg-[#1A1114] border border-slate-200 dark:border-gray-700">
+                                        <span class="text-[10px] uppercase tracking-wider text-slate-400 dark:text-gray-500 block">Filling</span>
+                                        <span class="text-sm font-bold text-primary dark:text-white" id="preview-filling">Select...</span>
+                                    </div>
+                                    <div class="text-2xl text-slate-300 dark:text-gray-600 self-center">+</div>
+                                    <div class="px-4 py-2 rounded-xl bg-white dark:bg-[#1A1114] border border-slate-200 dark:border-gray-700">
+                                        <span class="text-[10px] uppercase tracking-wider text-slate-400 dark:text-gray-500 block">Frosting</span>
+                                        <span class="text-sm font-bold text-primary dark:text-white" id="preview-frosting">Select...</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="orders.html" class="px-8 py-3.5 rounded-full bg-secondary text-white font-bold text-sm hover:shadow-lg hover:shadow-secondary/30 hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap shrink-0">
+                                Order This Combo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ===== 6. Seasonal Flavor Spotlight ===== -->
+        <section class="py-24 bg-white dark:bg-[#1A1114] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="relative rounded-3xl overflow-hidden bg-gradient-to-br from-secondary/10 via-white to-secondary/5 dark:from-secondary/10 dark:via-[#2A1C20] dark:to-secondary/5 border border-secondary/20">
+                    <div class="flex flex-col lg:flex-row">
+                        <div class="w-full lg:w-1/2 p-8 md:p-12 lg:p-16 flex flex-col justify-center">
+                            <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary/10 text-secondary font-bold text-xs tracking-widest uppercase mb-6 w-fit">
+                                <i class="fa-solid fa-sparkles"></i> Flavor of the Month
+                            </span>
+                            <h2 class="text-3xl md:text-4xl font-serif font-bold text-primary dark:text-white mb-4">Yuzu Passionfruit</h2>
+                            <p class="text-slate-600 dark:text-gray-400 leading-relaxed mb-6">
+                                A bright, exotic combination of Japanese yuzu citrus and tropical passionfruit. Our lightest, most refreshing sponge layered with passionfruit curd and finished with a yuzu glaze.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-8">
+                                <span class="px-3 py-1.5 rounded-full bg-white dark:bg-[#1A1114] border border-slate-200 dark:border-gray-700 text-xs font-bold text-primary dark:text-white"><i class="fa-solid fa-fire text-secondary mr-1"></i> Limited Edition</span>
+                                <span class="px-3 py-1.5 rounded-full bg-white dark:bg-[#1A1114] border border-slate-200 dark:border-gray-700 text-xs font-bold text-primary dark:text-white"><i class="fa-solid fa-clock text-secondary mr-1"></i> Available until Feb 28</span>
+                            </div>
+                            <a href="orders.html" class="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-secondary text-white font-bold text-sm hover:shadow-lg hover:shadow-secondary/30 hover:-translate-y-0.5 transition-all duration-300 w-fit">
+                                Order Before It's Gone <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </a>
+                        </div>
+                        <div class="w-full lg:w-1/2 relative min-h-[300px] lg:min-h-auto">
+                            <img src="images/img7.avif" alt="Yuzu passionfruit" class="absolute inset-0 w-full h-full object-cover" />
+                            <div class="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent dark:from-[#2A1C20]/30 lg:block hidden"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 7. Dietary Alternatives ===== -->
+        <section class="py-24 bg-slate-50 dark:bg-[#110A0C] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <span class="text-secondary font-bold text-sm tracking-wider uppercase mb-3 block">For Everyone</span>
+                    <h2 class="text-3xl md:text-5xl font-serif font-bold text-primary dark:text-white mb-4">Dietary Alternatives</h2>
+                    <p class="text-slate-600 dark:text-gray-400">Every flavor is available in dietary-friendly versions without compromising taste.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                    <div class="bg-white dark:bg-[#2A1C20] rounded-2xl overflow-hidden border border-slate-200 dark:border-gray-800 hover:shadow-lg transition-all group">
+                    
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="w-8 h-8 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary"><i class="fa-solid fa-wheat-awn-circle-exclamation text-sm"></i></div>
+                                <h3 class="font-bold text-primary dark:text-white">Gluten-Free</h3>
+                            </div>
+                            <p class="text-slate-500 dark:text-gray-400 text-sm leading-relaxed mb-3">Almond and rice flour blends available for all sponge flavors. Dedicated GF prep area.</p>
+                            <span class="text-xs text-secondary font-bold">All flavors available</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-[#2A1C20] rounded-2xl overflow-hidden border border-slate-200 dark:border-gray-800 hover:shadow-lg transition-all group">
+                     
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="w-8 h-8 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary"><i class="fa-solid fa-leaf text-sm"></i></div>
+                                <h3 class="font-bold text-primary dark:text-white">Vegan</h3>
+                            </div>
+                            <p class="text-slate-500 dark:text-gray-400 text-sm leading-relaxed mb-3">Aquafaba-based sponges with oat cream and coconut-based buttercream options.</p>
+                            <span class="text-xs text-secondary font-bold">12+ flavors available</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-[#2A1C20] rounded-2xl overflow-hidden border border-slate-200 dark:border-gray-800 hover:shadow-lg transition-all group">
+                       
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="w-8 h-8 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary"><i class="fa-solid fa-droplet text-sm"></i></div>
+                                <h3 class="font-bold text-primary dark:text-white">Reduced Sugar</h3>
+                            </div>
+                            <p class="text-slate-500 dark:text-gray-400 text-sm leading-relaxed mb-3">Naturally sweetened with monk fruit and date syrup. Lower glycemic, same bold flavors.</p>
+                            <span class="text-xs text-secondary font-bold">8+ flavors available</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 8. Flavor Quiz CTA ===== -->
+        <section class="py-20 bg-primary dark:bg-[#110A0C] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+                    <div class="w-full md:w-2/3">
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-white mb-4 leading-tight">Not Sure Which Flavor Is Right?</h2>
+                        <p class="text-white/60 text-lg max-w-xl">Book a tasting session and sample 6 of our signature flavors. We'll help you discover your perfect combination.</p>
+                    </div>
+                    <div class="w-full md:w-1/3 flex flex-col sm:flex-row md:flex-col gap-4">
+                        <a href="orders.html" class="flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-secondary text-white font-bold hover:shadow-xl hover:-translate-y-1 transition-all duration-300 whitespace-nowrap">
+                            <i class="fa-solid fa-utensils"></i> Book a Tasting
+                        </a>
+                        <a href="contact.html" class="flex items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-white/25 text-white font-bold hover:bg-white/10 transition-all duration-300 whitespace-nowrap">
+                            Ask Our Chefs
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="navbar.js"></script>
+    <script src="footer.js"></script>
+
+    <script>
+    // Flavor Builder Logic
+    const selections = { sponge: '', filling: '', frosting: '' };
+    let currentStep = 1;
+
+    function selectChoice(btn, type, value) {
+        selections[type] = value;
+
+        // Deselect siblings
+        btn.parentElement.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+
+        // Update preview
+        document.getElementById('preview-' + type).textContent = value;
+        document.getElementById('preview-' + type).classList.add('text-secondary');
+
+        // Auto advance step
+        if (type === 'sponge' && currentStep === 1) {
+            setTimeout(() => goToStep(2), 300);
+        } else if (type === 'filling' && currentStep === 2) {
+            setTimeout(() => goToStep(3), 300);
+        }
+    }
+
+    function goToStep(step) {
+        currentStep = step;
+        document.querySelectorAll('.builder-content').forEach(c => c.classList.add('hidden'));
+        document.getElementById('step' + step).classList.remove('hidden');
+
+        document.querySelectorAll('.builder-step').forEach(s => {
+            const sStep = +s.getAttribute('data-step');
+            const dot = s.querySelector('.step-dot');
+            const label = s.querySelector('.step-label');
+
+            if (sStep <= step) {
+                s.classList.add('active');
+                dot.classList.remove('bg-slate-200', 'dark:bg-gray-700', 'text-slate-500', 'dark:text-gray-400');
+                dot.classList.add('bg-secondary', 'text-white');
+                label.classList.remove('text-slate-500', 'dark:text-gray-400');
+                label.classList.add('text-secondary');
+            } else {
+                s.classList.remove('active');
+                dot.classList.add('bg-slate-200', 'dark:bg-gray-700', 'text-slate-500', 'dark:text-gray-400');
+                dot.classList.remove('bg-secondary', 'text-white');
+                label.classList.add('text-slate-500', 'dark:text-gray-400');
+                label.classList.remove('text-secondary');
+            }
+        });
+    }
+    </script>
+
+</body>
+</html>

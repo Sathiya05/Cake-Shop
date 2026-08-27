@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SweetStudio | Our Menu - Cakes & Desserts</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#523940',
+                        secondary: '#E75480',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .tab-active { color: #E75480 !important; border-color: #E75480 !important; background: rgba(231,84,128,0.08); }
+        .menu-item { transition: all 0.4s cubic-bezier(0.25,0.8,0.25,1); }
+        .menu-item.hidden-item { opacity: 0; transform: scale(0.95); position: absolute; pointer-events: none; }
+        .menu-item.visible-item { opacity: 1; transform: scale(1); position: relative; pointer-events: auto; }
+        .menu-item:hover { transform: translateY(-4px); }
+        .faq-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; }
+        .faq-content.open { max-height: 300px; }
+        .add-scroll::-webkit-scrollbar { height: 4px; }
+        .add-scroll::-webkit-scrollbar-thumb { background: #E75480; border-radius: 10px; }
+        @keyframes floatDecor { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-15px) rotate(3deg); } }
+        .float-decor { animation: floatDecor 5s ease-in-out infinite; }
+        .float-decor-delay { animation: floatDecor 5s ease-in-out 1.5s infinite; }
+    </style>
+</head>
+<body class="bg-white dark:bg-[#1A1114] text-slate-900 dark:text-gray-200 font-sans antialiased selection:bg-secondary selection:text-white transition-colors duration-500">
+
+    <div id="navbar"></div>
+
+    <main class="pt-20 md:pt-24">
+
+        <!-- ===== 1. Elegant Hero with Floating Decorations ===== -->
+        <section class="relative py-28 md:py-36 overflow-hidden transition-colors duration-500">
+            <img src="images/bg4.avif" alt="Menu hero" class="absolute inset-0 w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/60 to-primary dark:from-[#110A0C]/90 dark:via-[#110A0C]/75 dark:to-[#110A0C]"></div>
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10 relative z-10 text-center">
+                <div class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white font-bold text-xs tracking-widest uppercase mb-8">
+                    <i class="fa-solid fa-utensils"></i> Handcrafted Menu
+                </div>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white leading-[1.08] mb-6">
+                    Flavors That<br/> <span class="text-secondary">Speak for Themselves</span>
+                </h1>
+                <p class="text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed mb-10">
+                    Every item on our menu is baked fresh daily with premium ingredients. From classic favorites to seasonal specials — there's something for every palate.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="menus.html" class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-secondary text-white font-bold hover:shadow-xl hover:shadow-secondary/30 hover:-translate-y-1 transition-all duration-300">
+                        Browse Full Menu <i class="fa-solid fa-arrow-down"></i>
+                    </a>
+                    <a href="orders.html" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-white/25 text-white font-bold hover:bg-white/10 transition-all duration-300">
+                        Custom Orders
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 2. Tabbed Category Filter Bar ===== -->
+        <section class=" top-20 md:top-24 z-40 bg-white/80 dark:bg-[#1A1114]/80 backdrop-blur-xl border-b border-slate-200 dark:border-gray-800 transition-colors duration-500" id="menu-grid">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="flex gap-2 py-4 overflow-x-auto add-scroll">
+                    <button class="menu-tab tab-active shrink-0 px-5 py-2.5 rounded-full text-sm font-bold border-2 border-secondary/20 transition-all duration-300" data-filter="all">
+                        <i class="fa-solid fa-grid-2 mr-1.5"></i> All
+                    </button>
+                    <button class="menu-tab shrink-0 px-5 py-2.5 rounded-full text-sm font-bold text-slate-600 dark:text-gray-400 border-2 border-transparent hover:border-secondary/20 transition-all duration-300" data-filter="cakes">
+                        <i class="fa-solid fa-cake-candles mr-1.5"></i> Cakes
+                    </button>
+                    <button class="menu-tab shrink-0 px-5 py-2.5 rounded-full text-sm font-bold text-slate-600 dark:text-gray-400 border-2 border-transparent hover:border-secondary/20 transition-all duration-300" data-filter="pastries">
+                        <i class="fa-solid fa-cookie mr-1.5"></i> Pastries
+                    </button>
+                    <button class="menu-tab shrink-0 px-5 py-2.5 rounded-full text-sm font-bold text-slate-600 dark:text-gray-400 border-2 border-transparent hover:border-secondary/20 transition-all duration-300" data-filter="macarons">
+                        <i class="fa-solid fa-circle-dot mr-1.5"></i> Macarons
+                    </button>
+                    <button class="menu-tab shrink-0 px-5 py-2.5 rounded-full text-sm font-bold text-slate-600 dark:text-gray-400 border-2 border-transparent hover:border-secondary/20 transition-all duration-300" data-filter="tarts">
+                        <i class="fa-solid fa-pie-piece mr-1.5"></i> Tarts & Pies
+                    </button>
+                    <button class="menu-tab shrink-0 px-5 py-2.5 rounded-full text-sm font-bold text-slate-600 dark:text-gray-400 border-2 border-transparent hover:border-secondary/20 transition-all duration-300" data-filter="seasonal">
+                        <i class="fa-solid fa-snowflake mr-1.5"></i> Seasonal
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 3. Menu Items — Asymmetric Bento Grid ===== -->
+        <section class="py-20 bg-slate-50 dark:bg-[#110A0C] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="menuItems">
+
+                    <!-- Item 1 - Large -->
+                    <div class="menu-item visible-item relative rounded-2xl overflow-hidden group lg:row-span-2 cursor-pointer" data-category="cakes">
+                        <img src="images/Berry Mascarpone.avif" alt="Berry Mascarpone" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
+                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-secondary text-white text-xs font-bold z-10">Bestseller</span>
+                        <div class="absolute inset-0 p-6 lg:p-8 flex flex-col justify-end z-10">
+                            <div class="flex items-end justify-between gap-3 mb-2">
+                                <h3 class="text-lg font-bold text-white">Berry Mascarpone</h3>
+                                <span class="text-secondary font-bold text-lg shrink-0">$85</span>
+                            </div>
+                            <p class="text-white/60 text-sm leading-relaxed mb-3">Layers of vanilla sponge, fresh berry compote, and whipped mascarpone cream. A signature SweetStudio creation.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-full bg-white/15 backdrop-blur-sm text-white text-xs font-medium">Serves 12-16</span>
+                                <span class="px-2.5 py-1 rounded-full bg-white/15 backdrop-blur-sm text-white text-xs font-medium">8 inch</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="menu-item visible-item bg-white dark:bg-[#2A1C20] rounded-2xl overflow-hidden border border-slate-200 dark:border-gray-800 hover:shadow-xl hover:border-secondary/30 transition-all group" data-category="cakes">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="images\Dark Chocolate Truffle.avif" alt="Dark Chocolate Truffle" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-start justify-between gap-3 mb-3">
+                                <h3 class="text-lg font-bold text-primary dark:text-white">Dark Chocolate Truffle</h3>
+                                <span class="text-secondary font-bold text-lg shrink-0">$90</span>
+                            </div>
+                            <p class="text-slate-500 dark:text-gray-400 text-sm leading-relaxed mb-4">Rich 72% dark chocolate ganache layered with espresso buttercream.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-gray-800 text-xs font-medium text-slate-600 dark:text-gray-400">Serves 10-14</span>
+                                <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-gray-800 text-xs font-medium text-slate-600 dark:text-gray-400">8 inch</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="menu-item visible-item bg-white dark:bg-[#2A1C20] rounded-2xl overflow-hidden border border-slate-200 dark:border-gray-800 hover:shadow-xl hover:border-secondary/30 transition-all group" data-category="macarons">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="images\Macaron Box.avif" alt="French Macaron Box" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-start justify-between gap-3 mb-3">
+                                <h3 class="text-lg font-bold text-primary dark:text-white">Macaron Box (12pc)</h3>
+                                <span class="text-secondary font-bold text-lg shrink-0">$36</span>
+                            </div>
+                            <p class="text-slate-500 dark:text-gray-400 text-sm leading-relaxed mb-4">Assorted French macarons in seasonal flavors — lavender, pistachio, rose, and more.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-gray-800 text-xs font-medium text-slate-600 dark:text-gray-400">12 pieces</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="menu-item visible-item bg-white dark:bg-[#2A1C20] rounded-2xl overflow-hidden border border-slate-200 dark:border-gray-800 hover:shadow-xl hover:border-secondary/30 transition-all group" data-category="pastries">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="images\Pistachio Rosewater.webp" alt="Pistachio Rosewater" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-start justify-between gap-3 mb-3">
+                                <h3 class="text-lg font-bold text-primary dark:text-white">Pistachio Rosewater</h3>
+                                <span class="text-secondary font-bold text-lg shrink-0">$95</span>
+                            </div>
+                            <p class="text-slate-500 dark:text-gray-400 text-sm leading-relaxed mb-4">Earthy pistachio cake with rosewater mascarpone and crushed pistachios.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-gray-800 text-xs font-medium text-slate-600 dark:text-gray-400">Serves 12-16</span>
+                                <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-gray-800 text-xs font-medium text-slate-600 dark:text-gray-400">8 inch</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="menu-item visible-item bg-white dark:bg-[#2A1C20] rounded-2xl overflow-hidden border border-slate-200 dark:border-gray-800 hover:shadow-xl hover:border-secondary/30 transition-all group" data-category="tarts">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="images\Meyer Lemon Tart.webp" alt="Lemon Tart" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-start justify-between gap-3 mb-3">
+                                <h3 class="text-lg font-bold text-primary dark:text-white">Meyer Lemon Tart</h3>
+                                <span class="text-secondary font-bold text-lg shrink-0">$42</span>
+                            </div>
+                            <p class="text-slate-500 dark:text-gray-400 text-sm leading-relaxed mb-4">Tangy lemon curd in buttery shortcrust, topped with torched meringue.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-gray-800 text-xs font-medium text-slate-600 dark:text-gray-400">Serves 6-8</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 6 -->
+                    <div class="menu-item visible-item bg-white dark:bg-[#2A1C20] rounded-2xl overflow-hidden border border-slate-200 dark:border-gray-800 hover:shadow-xl hover:border-secondary/30 transition-all group" data-category="cakes">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="images\Vanilla Bean Caramel.webp" alt="Vanilla Bean Caramel" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-start justify-between gap-3 mb-3">
+                                <h3 class="text-lg font-bold text-primary dark:text-white">Vanilla Bean Caramel</h3>
+                                <span class="text-secondary font-bold text-lg shrink-0">$75</span>
+                            </div>
+                            <p class="text-slate-500 dark:text-gray-400 text-sm leading-relaxed mb-4">Madagascar vanilla sponge with salted caramel drip and Swiss meringue.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-gray-800 text-xs font-medium text-slate-600 dark:text-gray-400">Serves 10-14</span>
+                                <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-gray-800 text-xs font-medium text-slate-600 dark:text-gray-400">8 inch</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 7 -->
+                    <div class="menu-item visible-item bg-white dark:bg-[#2A1C20] rounded-2xl overflow-hidden border border-slate-200 dark:border-gray-800 hover:shadow-xl hover:border-secondary/30 transition-all group" data-category="pastries">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="images\Cupcake Box.avif" alt="Cupcakes Assortment" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-start justify-between gap-3 mb-3">
+                                <h3 class="text-lg font-bold text-primary dark:text-white">Cupcake Box (6pc)</h3>
+                                <span class="text-secondary font-bold text-lg shrink-0">$28</span>
+                            </div>
+                            <p class="text-slate-500 dark:text-gray-400 text-sm leading-relaxed mb-4">Six mini cupcakes with house-made buttercream in assorted flavors.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-gray-800 text-xs font-medium text-slate-600 dark:text-gray-400">6 pieces</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 8 - Seasonal -->
+                    <div class="menu-item visible-item bg-white dark:bg-[#2A1C20] rounded-2xl overflow-hidden border border-slate-200 dark:border-gray-800 hover:shadow-xl hover:border-secondary/30 transition-all group" data-category="seasonal">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="images\Spring Blossom.avif" alt="Spring Blossom Cake" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-primary text-white text-xs font-bold">Seasonal</span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-start justify-between gap-3 mb-3">
+                                <h3 class="text-lg font-bold text-primary dark:text-white">Spring Blossom</h3>
+                                <span class="text-secondary font-bold text-lg shrink-0">$98</span>
+                            </div>
+                            <p class="text-slate-500 dark:text-gray-400 text-sm leading-relaxed mb-4">Elderflower sponge with strawberry rose filling and edible flower crown.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-full bg-secondary/10 text-xs font-medium text-secondary">Limited Edition</span>
+                                <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-gray-800 text-xs font-medium text-slate-600 dark:text-gray-400">Serves 12-16</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+     <!-- ===== 5. Add-On Services — Grid ===== -->
+        <section class="py-24 bg-slate-50 dark:bg-[#110A0C] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10 mb-12">
+                <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+                    <div>
+                        <span class="text-secondary font-bold text-sm tracking-wider uppercase mb-3 block">Enhance Your Order</span>
+                        <h2 class="text-3xl md:text-5xl font-serif font-bold text-primary dark:text-white">Popular Add-Ons</h2>
+                    </div>
+                    <p class="text-slate-500 dark:text-gray-400 text-sm max-w-sm">Customize your dessert experience with our curated extras.</p>
+                </div>
+            </div>
+
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
+                    <div class="bg-white dark:bg-[#2A1C20] rounded-2xl p-6 border border-slate-200 dark:border-gray-800 hover:border-secondary/40 hover:shadow-lg transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-cake-candles"></i>
+                        </div>
+                        <h3 class="font-bold text-primary dark:text-white mb-1">Custom Cake Topper</h3>
+                        <p class="text-slate-500 dark:text-gray-400 text-sm mb-4">Personalized fondant or acrylic topper in any style.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-secondary font-bold">+$25</span>
+                            <span class="text-xs text-slate-400 dark:text-gray-500">3 day notice</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-[#2A1C20] rounded-2xl p-6 border border-slate-200 dark:border-gray-800 hover:border-secondary/40 hover:shadow-lg transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-box-open"></i>
+                        </div>
+                        <h3 class="font-bold text-primary dark:text-white mb-1">Gift Packaging</h3>
+                        <p class="text-slate-500 dark:text-gray-400 text-sm mb-4">Luxury ribbon-tied box with tissue and branded sticker.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-secondary font-bold">+$15</span>
+                            <span class="text-xs text-slate-400 dark:text-gray-500">Available</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-[#2A1C20] rounded-2xl p-6 border border-slate-200 dark:border-gray-800 hover:border-secondary/40 hover:shadow-lg transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-truck"></i>
+                        </div>
+                        <h3 class="font-bold text-primary dark:text-white mb-1">Same-Day Delivery</h3>
+                        <p class="text-slate-500 dark:text-gray-400 text-sm mb-4">Temperature-controlled delivery within NYC metro area.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-secondary font-bold">+$35</span>
+                            <span class="text-xs text-slate-400 dark:text-gray-500">Order by 10am</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-[#2A1C20] rounded-2xl p-6 border border-slate-200 dark:border-gray-800 hover:border-secondary/40 hover:shadow-lg transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
+                        <h3 class="font-bold text-primary dark:text-white mb-1">Cake Tasting Box</h3>
+                        <p class="text-slate-500 dark:text-gray-400 text-sm mb-4">6 flavor samples in a curated box before you commit.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-secondary font-bold">$45</span>
+                            <span class="text-xs text-slate-400 dark:text-gray-500">In-studio</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-[#2A1C20] rounded-2xl p-6 border border-slate-200 dark:border-gray-800 hover:border-secondary/40 hover:shadow-lg transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-images"></i>
+                        </div>
+                        <h3 class="font-bold text-primary dark:text-white mb-1">Photo Session</h3>
+                        <p class="text-slate-500 dark:text-gray-400 text-sm mb-4">Professional cake photography before your event.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-secondary font-bold">+$75</span>
+                            <span class="text-xs text-slate-400 dark:text-gray-500">By appointment</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ===== 4. Signature Item — Full-Width Feature ===== -->
+        <section class="py-24 bg-white dark:bg-[#1A1114] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="relative rounded-3xl overflow-hidden bg-primary dark:bg-[#2A1C20] border border-transparent dark:border-gray-800">
+                    <div class="flex flex-col lg:flex-row">
+                        <div class="w-full lg:w-1/2 relative h-[300px] lg:h-auto">
+                            <img src="images\img19.avif" alt="Signature cake" class="w-full h-full object-cover" />
+                            <div class="absolute inset-0 bg-gradient-to-r from-transparent to-primary/40 dark:to-[#2A1C20]/60 hidden lg:block"></div>
+                            <div class="absolute top-6 left-6 px-4 py-2 rounded-full bg-secondary text-white text-sm font-bold shadow-lg">
+                                <i class="fa-solid fa-star mr-1"></i> Chef's Signature
+                            </div>
+                        </div>
+                        <div class="w-full lg:w-1/2 p-8 md:p-12 lg:p-16 flex flex-col justify-center">
+                            <span class="text-secondary font-bold text-xs tracking-widest uppercase mb-4 block">Signature Creation</span>
+                            <h2 class="text-3xl md:text-4xl font-serif font-bold text-white mb-4 leading-tight">The Midnight Velvet</h2>
+                            <p class="text-white/70 leading-relaxed mb-8">
+                                Our most requested signature cake. Five layers of deeply saturated dark chocolate sponge, filled with Madagascar vanilla bean ganache, enrobed in a mirror-finish dark chocolate glaze, and finished with hand-painted edible gold leaf.
+                            </p>
+                            <div class="grid grid-cols-2 gap-4 mb-8">
+                                <div class="bg-white/10 rounded-xl p-4 text-center">
+                                    <div class="text-secondary font-bold text-xl">$125</div>
+                                    <div class="text-white/50 text-xs mt-1">Starting Price</div>
+                                </div>
+                                <div class="bg-white/10 rounded-xl p-4 text-center">
+                                    <div class="text-secondary font-bold text-xl">10-20</div>
+                                    <div class="text-white/50 text-xs mt-1">Servings</div>
+                                </div>
+                                <div class="bg-white/10 rounded-xl p-4 text-center">
+                                    <div class="text-secondary font-bold text-xl">48hr</div>
+                                    <div class="text-white/50 text-xs mt-1">Advance Notice</div>
+                                </div>
+                                <div class="bg-white/10 rounded-xl p-4 text-center">
+                                    <div class="text-secondary font-bold text-xl">5-Star</div>
+                                    <div class="text-white/50 text-xs mt-1">Avg Rating</div>
+                                </div>
+                            </div>
+                            <a href="orders.html" class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-secondary text-white font-bold hover:shadow-xl hover:shadow-secondary/30 hover:-translate-y-1 transition-all duration-300 w-fit">
+                                Order This Cake <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+   
+
+        <!-- ===== 6. Dietary & Allergy Info ===== -->
+        <section class="py-20 bg-white dark:bg-[#1A1114] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-secondary font-bold text-sm tracking-wider uppercase mb-3 block">For Everyone</span>
+                    <h2 class="text-3xl md:text-5xl font-serif font-bold text-primary dark:text-white mb-4">Dietary & Allergy Info</h2>
+                    <p class="text-slate-600 dark:text-gray-400">We believe everyone deserves exceptional dessert. Here's how we accommodate your needs.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <div class="bg-slate-50 dark:bg-[#2A1C20] rounded-2xl p-7 border border-slate-200 dark:border-gray-800 text-center group hover:border-secondary/40 transition-all">
+                        <div class="w-14 h-14 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary text-xl mx-auto mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-wheat-awn-circle-exclamation"></i>
+                        </div>
+                        <h3 class="font-bold text-primary dark:text-white mb-2">Gluten-Free</h3>
+                        <p class="text-slate-500 dark:text-gray-400 text-sm">Dedicated GF prep area and certified almond flour alternatives for all cakes.</p>
+                    </div>
+
+                    <div class="bg-slate-50 dark:bg-[#2A1C20] rounded-2xl p-7 border border-slate-200 dark:border-gray-800 text-center group hover:border-secondary/40 transition-all">
+                        <div class="w-14 h-14 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary text-xl mx-auto mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <h3 class="font-bold text-primary dark:text-white mb-2">Vegan Options</h3>
+                        <p class="text-slate-500 dark:text-gray-400 text-sm">Plant-based cakes and pastries using aquafaba, oat milk, and coconut cream.</p>
+                    </div>
+
+                    <div class="bg-slate-50 dark:bg-[#2A1C20] rounded-2xl p-7 border border-slate-200 dark:border-gray-800 text-center group hover:border-secondary/40 transition-all">
+                        <div class="w-14 h-14 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary text-xl mx-auto mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-egg"></i>
+                        </div>
+                        <h3 class="font-bold text-primary dark:text-white mb-2">Egg-Free</h3>
+                        <p class="text-slate-500 dark:text-gray-400 text-sm">Applesauce and flax-based substitutions that maintain moisture and structure.</p>
+                    </div>
+
+                    <div class="bg-slate-50 dark:bg-[#2A1C20] rounded-2xl p-7 border border-slate-200 dark:border-gray-800 text-center group hover:border-secondary/40 transition-all">
+                        <div class="w-14 h-14 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary text-xl mx-auto mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-droplet"></i>
+                        </div>
+                        <h3 class="font-bold text-primary dark:text-white mb-2">Dairy-Free</h3>
+                        <p class="text-slate-500 dark:text-gray-400 text-sm">Rich buttercream alternatives using premium plant-based butter and cream.</p>
+                    </div>
+                </div>
+
+                <div class="mt-8 p-6 rounded-xl bg-secondary/5 border border-secondary/10 flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+                    <i class="fa-solid fa-circle-info text-secondary text-2xl shrink-0"></i>
+                    <p class="text-slate-600 dark:text-gray-400 text-sm">Have a specific allergy or dietary requirement? <a href="contact.html" class="text-secondary font-bold hover:underline">Contact us</a> before ordering and we'll do our best to accommodate.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 7. Menu FAQ Accordion ===== -->
+        <section class="py-24 bg-slate-50 dark:bg-[#110A0C] transition-colors duration-500">
+            <div class="max-w-3xl mx-auto px-6 lg:px-10">
+                <div class="text-center mb-16">
+                    <span class="text-secondary font-bold text-sm tracking-wider uppercase mb-3 block">Questions?</span>
+                    <h2 class="text-3xl md:text-5xl font-serif font-bold text-primary dark:text-white">Menu FAQ</h2>
+                </div>
+
+                <div class="space-y-4" id="faqAccordion">
+                    <div class="bg-white dark:bg-[#2A1C20] rounded-2xl border border-slate-200 dark:border-gray-800 overflow-hidden">
+                        <button class="faq-toggle w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                            <h3 class="font-bold text-primary dark:text-white pr-4">How far in advance should I order?</h3>
+                            <i class="fa-solid fa-plus text-secondary shrink-0 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-content px-6 pb-6">
+                            <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">For standard menu items, we recommend 3-5 days advance notice. Custom and wedding cakes require 2-4 weeks. Our seasonal specials sell out quickly, so order as early as possible.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-[#2A1C20] rounded-2xl border border-slate-200 dark:border-gray-800 overflow-hidden">
+                        <button class="faq-toggle w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                            <h3 class="font-bold text-primary dark:text-white pr-4">Do you offer cake tastings?</h3>
+                            <i class="fa-solid fa-plus text-secondary shrink-0 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-content px-6 pb-6">
+                            <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">Yes! Our in-studio tasting experience includes 6 signature flavors paired with complimentary beverages. Tastings are $45 but credited toward your final order. Available by appointment Tuesday-Saturday.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-[#2A1C20] rounded-2xl border border-slate-200 dark:border-gray-800 overflow-hidden">
+                        <button class="faq-toggle w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                            <h3 class="font-bold text-primary dark:text-white pr-4">Can I customize flavors and fillings?</h3>
+                            <i class="fa-solid fa-plus text-secondary shrink-0 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-content px-6 pb-6">
+                            <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">Absolutely. Every custom order allows you to mix and match from our 30+ sponge flavors, 20+ filling options, and 8 frosting varieties. Our team will help you find your perfect combination.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-[#2A1C20] rounded-2xl border border-slate-200 dark:border-gray-800 overflow-hidden">
+                        <button class="faq-toggle w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                            <h3 class="font-bold text-primary dark:text-white pr-4">Do you deliver outside NYC?</h3>
+                            <i class="fa-solid fa-plus text-secondary shrink-0 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-content px-6 pb-6">
+                            <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">We deliver throughout the NYC metro area including Long Island, Westchester, and parts of New Jersey. For destinations further away, we offer handoff packaging designed for safe self-transport. Contact us for a custom quote.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-[#2A1C20] rounded-2xl border border-slate-200 dark:border-gray-800 overflow-hidden">
+                        <button class="faq-toggle w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                            <h3 class="font-bold text-primary dark:text-white pr-4">What's your cancellation policy?</h3>
+                            <i class="fa-solid fa-plus text-secondary shrink-0 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-content px-6 pb-6">
+                            <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">Custom orders can be modified or cancelled up to 7 days before delivery for a full refund. Within 7 days, a 50% fee applies. Seasonal and standard menu items can be cancelled up to 24 hours before pickup.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 8. Order CTA ===== -->
+        <section class="py-16 bg-white dark:bg-[#1A1114] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="bg-primary dark:bg-[#2A1C20] rounded-3xl p-8 md:p-14 flex flex-col lg:flex-row items-center justify-between gap-10 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-72 h-72 bg-secondary/10 rounded-full blur-[80px] pointer-events-none"></div>
+                    <div class="relative z-10 max-w-xl text-center lg:text-left">
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-white mb-4">Ready to Order?</h2>
+                        <p class="text-white/70 text-lg">Browse, choose, and we'll handle the rest. Every dessert is baked fresh and delivered with care.</p>
+                    </div>
+                    <div class="relative z-10 flex flex-col sm:flex-row gap-4 shrink-0">
+                        <a href="custom-orders.html" class="flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-secondary text-white font-bold hover:shadow-xl hover:-translate-y-1 transition-all duration-300 whitespace-nowrap">
+                            Start Custom Order <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="contact.html" class="flex items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-white/30 text-white font-bold hover:bg-white/10 transition-all duration-300 whitespace-nowrap">
+                            <i class="fa-solid fa-phone text-sm"></i> Call Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="navbar.js"></script>
+    <script src="footer.js"></script>
+
+    <!-- Menu Filter + FAQ Script -->
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        /* Tab Filter Logic */
+        const tabs = document.querySelectorAll('.menu-tab');
+        const items = document.querySelectorAll('.menu-item');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('tab-active'));
+                tab.classList.add('tab-active');
+
+                const filter = tab.getAttribute('data-filter');
+
+                items.forEach(item => {
+                    const category = item.getAttribute('data-category');
+                    if (filter === 'all' || category === filter) {
+                        item.classList.remove('hidden-item');
+                        item.classList.add('visible-item');
+                    } else {
+                        item.classList.add('hidden-item');
+                        item.classList.remove('visible-item');
+                    }
+                });
+            });
+        });
+
+    });
+
+    /* FAQ Toggle */
+    function toggleFaq(btn) {
+        const content = btn.nextElementSibling;
+        const icon = btn.querySelector('i');
+        const isOpen = content.classList.contains('open');
+
+        // Close all
+        document.querySelectorAll('.faq-content').forEach(c => c.classList.remove('open'));
+        document.querySelectorAll('.faq-toggle i').forEach(i => { i.classList.remove('fa-minus'); i.classList.add('fa-plus'); });
+
+        if (!isOpen) {
+            content.classList.add('open');
+            icon.classList.remove('fa-plus');
+            icon.classList.add('fa-minus');
+        }
+    }
+    </script>
+
+</body>
+</html>

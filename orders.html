@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SweetStudio | Custom Orders - Your Dream Dessert</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#523940',
+                        secondary: '#E75480',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .step-line { position: relative; }
+        .step-line::before {
+            content: ''; position: absolute; left: 23px; top: 56px; bottom: -24px; width: 2px;
+            background: linear-gradient(to bottom, #E75480, rgba(231,84,128,0.15));
+        }
+        .step-line:last-child::before { display: none; }
+        .tier-popular { transform: scale(1.05); z-index: 10; }
+        @media (max-width: 1024px) { .tier-popular { transform: scale(1); } }
+        .split-card:hover .split-overlay { opacity: 1; }
+        .split-card:hover .split-img { transform: scale(1.05); }
+        .quote-strip { display: flex; gap: 1.5rem; animation: scrollQuotes 30s linear infinite; }
+        @keyframes scrollQuotes { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .form-input:focus { border-color: #E75480; box-shadow: 0 0 0 3px rgba(231,84,128,0.1); }
+    </style>
+</head>
+<body class="bg-white dark:bg-[#1A1114] text-slate-900 dark:text-gray-200 font-sans antialiased selection:bg-secondary selection:text-white transition-colors duration-500">
+
+    <div id="navbar"></div>
+
+    <main class="pt-20 md:pt-24">
+
+        <!-- ===== 1. Dark Cinematic Hero with Side Stats ===== -->
+        <section class="relative min-h-[70vh] md:min-h-[80vh] flex items-center overflow-hidden bg-primary dark:bg-[#110A0C]">
+            <img src="images/bg5.avif" alt="Custom cake" class="absolute inset-0 w-full h-full object-cover opacity-30 dark:opacity-15" />
+            <div class="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/70 to-transparent dark:from-[#110A0C]/98 dark:via-[#110A0C]/70"></div>
+            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[150px] pointer-events-none"></div>
+
+            <div class="max-w-[1440px] w-full mx-auto px-6 lg:px-10 relative z-10 py-16 md:py-24">
+                <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                    <div class="w-full lg:w-3/5">
+                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 text-white/90 font-bold text-xs tracking-widest uppercase mb-6">
+                            <i class="fa-solid fa-palette text-secondary"></i> Bespoke Creations
+                        </div>
+                        <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white leading-[1.08] mb-6">
+                            Your Vision,<br/> <span class="text-secondary">Our Craft</span>
+                        </h1>
+                        <p class="text-lg md:text-xl text-white/60 max-w-lg leading-relaxed mb-10">
+                            Every custom order is a collaboration. Share your dream, and we'll bring it to life with precision, artistry, and the finest ingredients.
+                        </p>
+                        <a href="#order-form" class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-secondary text-white font-bold hover:shadow-xl hover:shadow-secondary/30 hover:-translate-y-1 transition-all duration-300">
+                            Start Your Order <i class="fa-solid fa-arrow-down"></i>
+                        </a>
+                    </div>
+                    <div class="w-full lg:w-2/5 grid grid-cols-2 gap-4">
+                        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center">
+                            <div class="text-3xl font-serif font-bold text-secondary mb-1">48hr</div>
+                            <p class="text-white/50 text-xs font-semibold uppercase tracking-wider">Avg Turnaround</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center">
+                            <div class="text-3xl font-serif font-bold text-white mb-1">400+</div>
+                            <p class="text-white/50 text-xs font-semibold uppercase tracking-wider">Designs / Year</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center">
+                            <div class="text-3xl font-serif font-bold text-secondary mb-1">100%</div>
+                            <p class="text-white/50 text-xs font-semibold uppercase tracking-wider">Custom Made</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center">
+                            <div class="text-3xl font-serif font-bold text-white mb-1">4.9<i class="fa-solid fa-star text-secondary text-lg ml-0.5"></i></div>
+                            <p class="text-white/50 text-xs font-semibold uppercase tracking-wider">Client Rating</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 2. How to Order — Vertical Connected Timeline ===== -->
+        <section class="py-24 bg-white dark:bg-[#1A1114] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-secondary font-bold text-sm tracking-wider uppercase mb-3 block">Simple Process</span>
+                    <h2 class="text-3xl md:text-5xl font-serif font-bold text-primary dark:text-white mb-4">How to Place a Custom Order</h2>
+                    <p class="text-slate-600 dark:text-gray-400">From first inquiry to final bite — here's how it works.</p>
+                </div>
+
+                <div class="max-w-3xl mx-auto">
+                    <div class="step-line">
+                        <div class="flex gap-6 mb-6 group">
+                            <div class="shrink-0 w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-secondary/30">1</div>
+                            <div class="pt-1">
+                                <h3 class="text-xl font-bold text-primary dark:text-white mb-2 group-hover:text-secondary transition-colors">Submit Your Inquiry</h3>
+                                <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">Fill out our order form with your event date, guest count, theme inspiration, and flavor preferences. We'll get back to you within 24 hours.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-line">
+                        <div class="flex gap-6 mb-6 group">
+                            <div class="shrink-0 w-12 h-12 rounded-full bg-white dark:bg-[#2A1C20] border-2 border-secondary/30 flex items-center justify-center text-secondary font-bold text-sm">2</div>
+                            <div class="pt-1">
+                                <h3 class="text-xl font-bold text-primary dark:text-white mb-2 group-hover:text-secondary transition-colors">Design Consultation</h3>
+                                <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">We schedule a call or in-studio visit to discuss your vision in detail. Our team creates hand-sketched concepts and flavor combinations for your review.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-line">
+                        <div class="flex gap-6 mb-6 group">
+                            <div class="shrink-0 w-12 h-12 rounded-full bg-white dark:bg-[#2A1C20] border-2 border-secondary/30 flex items-center justify-center text-secondary font-bold text-sm">3</div>
+                            <div class="pt-1">
+                                <h3 class="text-xl font-bold text-primary dark:text-white mb-2 group-hover:text-secondary transition-colors">Tasting Session</h3>
+                                <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">Visit our Brooklyn studio to sample your chosen flavors. Our tasting box includes 6 curated samples to help you finalize your perfect profile.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-line">
+                        <div class="flex gap-6 mb-6 group">
+                            <div class="shrink-0 w-12 h-12 rounded-full bg-white dark:bg-[#2A1C20] border-2 border-secondary/30 flex items-center justify-center text-secondary font-bold text-sm">4</div>
+                            <div class="pt-1">
+                                <h3 class="text-xl font-bold text-primary dark:text-white mb-2 group-hover:text-secondary transition-colors">Confirm & Pay Deposit</h3>
+                                <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">Review the final design sketch and quote. Secure your date with a 50% deposit. You'll receive a detailed order confirmation via email.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-line">
+                        <div class="flex gap-6 mb-6 group">
+                            <div class="shrink-0 w-12 h-12 rounded-full bg-white dark:bg-[#2A1C20] border-2 border-secondary/30 flex items-center justify-center text-secondary font-bold text-sm">5</div>
+                            <div class="pt-1">
+                                <h3 class="text-xl font-bold text-primary dark:text-white mb-2 group-hover:text-secondary transition-colors">Creation & Delivery</h3>
+                                <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">Our team handcrafts your dessert. We handle temperature-controlled delivery and optional on-site setup so you can focus on your celebration.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex gap-6 group">
+                            <div class="shrink-0 w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-secondary/30"><i class="fa-solid fa-check text-sm"></i></div>
+                            <div class="pt-1">
+                                <h3 class="text-xl font-bold text-primary dark:text-white mb-2 group-hover:text-secondary transition-colors">Enjoy!</h3>
+                                <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">Celebrate with confidence. Your dessert is freshly baked, beautifully presented, and ready to make your event unforgettable.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 3. How It Works ===== -->
+        <section class="py-24 bg-white dark:bg-[#1A1114] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-secondary font-bold text-sm tracking-wider uppercase mb-3 block">Simple Process</span>
+                    <h2 class="text-3xl md:text-5xl font-serif font-bold text-primary dark:text-white mb-4">How It Works</h2>
+                    <p class="text-slate-600 dark:text-gray-400">From first contact to final bite — here's how we bring your dream cake to life.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+                    <!-- Connector line (desktop) -->
+                    <div class="hidden lg:block absolute top-16 left-[12%] right-[12%] h-px bg-slate-200 dark:bg-gray-800"></div>
+
+                    <!-- Step 1 -->
+                    <div class="text-center relative">
+                        <div class="w-16 h-16 rounded-2xl bg-secondary/10 dark:bg-secondary/20 flex items-center justify-center mx-auto mb-6 relative z-10">
+                            <i class="fa-solid fa-comments text-secondary text-xl"></i>
+                        </div>
+                        <span class="text-secondary font-bold text-xs tracking-widest uppercase mb-2 block">Step 1</span>
+                        <h3 class="font-bold text-lg text-primary dark:text-white mb-2">Tell Us Your Vision</h3>
+                        <p class="text-slate-500 dark:text-gray-400 text-sm leading-relaxed max-w-[240px] mx-auto">Fill out the form below with your event details, flavor preferences, and design inspiration.</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="text-center relative">
+                        <div class="w-16 h-16 rounded-2xl bg-secondary/10 dark:bg-secondary/20 flex items-center justify-center mx-auto mb-6 relative z-10">
+                            <i class="fa-solid fa-palette text-secondary text-xl"></i>
+                        </div>
+                        <span class="text-secondary font-bold text-xs tracking-widest uppercase mb-2 block">Step 2</span>
+                        <h3 class="font-bold text-lg text-primary dark:text-white mb-2">Design Consultation</h3>
+                        <p class="text-slate-500 dark:text-gray-400 text-sm leading-relaxed max-w-[240px] mx-auto">We'll schedule a call to refine your design, finalize flavors, and provide a detailed quote.</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="text-center relative">
+                        <div class="w-16 h-16 rounded-2xl bg-secondary/10 dark:bg-secondary/20 flex items-center justify-center mx-auto mb-6 relative z-10">
+                            <i class="fa-solid fa-cake-candles text-secondary text-xl"></i>
+                        </div>
+                        <span class="text-secondary font-bold text-xs tracking-widest uppercase mb-2 block">Step 3</span>
+                        <h3 class="font-bold text-lg text-primary dark:text-white mb-2">We Bake & Decorate</h3>
+                        <p class="text-slate-500 dark:text-gray-400 text-sm leading-relaxed max-w-[240px] mx-auto">Our chefs handcraft your cake with premium ingredients. You'll receive progress updates along the way.</p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="text-center relative">
+                        <div class="w-16 h-16 rounded-2xl bg-secondary/10 dark:bg-secondary/20 flex items-center justify-center mx-auto mb-6 relative z-10">
+                            <i class="fa-solid fa-truck text-secondary text-xl"></i>
+                        </div>
+                        <span class="text-secondary font-bold text-xs tracking-widest uppercase mb-2 block">Step 4</span>
+                        <h3 class="font-bold text-lg text-primary dark:text-white mb-2">Delivery & Enjoy</h3>
+                        <p class="text-slate-500 dark:text-gray-400 text-sm leading-relaxed max-w-[240px] mx-auto">We deliver and set up your creation on-site. All that's left is to slice, serve, and celebrate!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 4. Order Inquiry Form with Side Info ===== -->
+        <section class="py-24 bg-white dark:bg-[#1A1114] transition-colors duration-500" id="order-form">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="flex flex-col lg:flex-row gap-12 lg:gap-20">
+                    
+                    <div class="w-full lg:w-5/12">
+                        <span class="text-secondary font-bold text-xs tracking-widest uppercase mb-4 block">Let's Create Together</span>
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-primary dark:text-white mb-6 leading-tight">Start Your Custom Order</h2>
+                        <p class="text-slate-600 dark:text-gray-400 mb-10 leading-relaxed">
+                            Tell us about your vision. The more details you share, the better we can bring your dream dessert to life.
+                        </p>
+
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary shrink-0"><i class="fa-solid fa-clock text-lg"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-primary dark:text-white text-sm">Response Within 24 Hours</h4>
+                                    <p class="text-slate-500 dark:text-gray-400 text-xs">We'll review your inquiry and reach out promptly.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary shrink-0"><i class="fa-solid fa-shield-heart text-lg"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-primary dark:text-white text-sm">No Commitment Required</h4>
+                                    <p class="text-slate-500 dark:text-gray-400 text-xs">Get a full quote before deciding. No pressure, ever.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary shrink-0"><i class="fa-solid fa-palette text-lg"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-primary dark:text-white text-sm">Free Design Concepts</h4>
+                                    <p class="text-slate-500 dark:text-gray-400 text-xs">Receive hand-sketched design ideas with your quote.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w-full lg:w-7/12">
+                        <form class="bg-slate-50 dark:bg-[#2A1C20] rounded-3xl p-8 md:p-10 border border-slate-200 dark:border-gray-800">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                                <div>
+                                    <label class="block text-xs font-bold text-primary dark:text-white mb-2 uppercase tracking-wider">Full Name *</label>
+                                    <input type="text" required class="form-input w-full px-4 py-3.5 rounded-xl bg-white dark:bg-[#1A1114] border border-slate-200 dark:border-gray-700 text-sm text-primary dark:text-white focus:outline-none transition-all" placeholder="Your name" />
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-primary dark:text-white mb-2 uppercase tracking-wider">Email *</label>
+                                    <input type="email" required class="form-input w-full px-4 py-3.5 rounded-xl bg-white dark:bg-[#1A1114] border border-slate-200 dark:border-gray-700 text-sm text-primary dark:text-white focus:outline-none transition-all" placeholder="your@email.com" />
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-primary dark:text-white mb-2 uppercase tracking-wider">Phone</label>
+                                    <input type="tel" class="form-input w-full px-4 py-3.5 rounded-xl bg-white dark:bg-[#1A1114] border border-slate-200 dark:border-gray-700 text-sm text-primary dark:text-white focus:outline-none transition-all" placeholder="(555) 123-4567" />
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-primary dark:text-white mb-2 uppercase tracking-wider">Event Date *</label>
+                                    <input type="date" required class="form-input w-full px-4 py-3.5 rounded-xl bg-white dark:bg-[#1A1114] border border-slate-200 dark:border-gray-700 text-sm text-primary dark:text-white focus:outline-none transition-all" />
+                                </div>
+                            </div>
+                            <div class="mb-5">
+                                <label class="block text-xs font-bold text-primary dark:text-white mb-2 uppercase tracking-wider">Order Type *</label>
+                                <select required class="form-input w-full px-4 py-3.5 rounded-xl bg-white dark:bg-[#1A1114] border border-slate-200 dark:border-gray-700 text-sm text-primary dark:text-white focus:outline-none transition-all appearance-none">
+                                    <option value="">Select an option</option>
+                                    <option>Wedding Cake</option>
+                                    <option>Birthday Cake</option>
+                                    <option>Corporate Event</option>
+                                    <option>Dessert Table</option>
+                                    <option>Holiday Order</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                                <div>
+                                    <label class="block text-xs font-bold text-primary dark:text-white mb-2 uppercase tracking-wider">Guest Count</label>
+                                    <input type="number" class="form-input w-full px-4 py-3.5 rounded-xl bg-white dark:bg-[#1A1114] border border-slate-200 dark:border-gray-700 text-sm text-primary dark:text-white focus:outline-none transition-all" placeholder="e.g. 50" />
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-primary dark:text-white mb-2 uppercase tracking-wider">Budget Range</label>
+                                    <select class="form-input w-full px-4 py-3.5 rounded-xl bg-white dark:bg-[#1A1114] border border-slate-200 dark:border-gray-700 text-sm text-primary dark:text-white focus:outline-none transition-all appearance-none">
+                                        <option value="">Select range</option>
+                                        <option>$75 - $150</option>
+                                        <option>$150 - $300</option>
+                                        <option>$300 - $500</option>
+                                        <option>$500+</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-xs font-bold text-primary dark:text-white mb-2 uppercase tracking-wider">Tell Us Your Vision *</label>
+                                <textarea required rows="4" class="form-input w-full px-4 py-3.5 rounded-xl bg-white dark:bg-[#1A1114] border border-slate-200 dark:border-gray-700 text-sm text-primary dark:text-white focus:outline-none transition-all resize-none" placeholder="Describe your dream cake — theme, colors, flavors, inspirations, anything that helps us understand your vision..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-4 rounded-xl bg-secondary text-white font-bold text-base hover:shadow-xl hover:shadow-secondary/30 hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-2">
+                                Submit Inquiry <i class="fa-solid fa-paper-plane text-sm"></i>
+                            </button>
+                            <p class="text-xs text-slate-400 dark:text-gray-500 text-center mt-4">We respond within 24 hours. No spam, ever.</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 5. Before & After Split Cards ===== -->
+        <section class="py-24 bg-slate-50 dark:bg-[#110A0C] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-secondary font-bold text-sm tracking-wider uppercase mb-3 block">Our Work</span>
+                    <h2 class="text-3xl md:text-5xl font-serif font-bold text-primary dark:text-white mb-4">From Vision to Reality</h2>
+                    <p class="text-slate-600 dark:text-gray-400">Every order starts with an idea and ends with a masterpiece.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="split-card group cursor-pointer">
+                        <div class="relative rounded-2xl overflow-hidden h-72">
+                            <img src="images/img5.avif" alt="Wedding cake" class="split-img w-full h-full object-cover transition-transform duration-700" />
+                            <div class="split-overlay absolute inset-0 bg-primary/80 flex flex-col items-center justify-center opacity-0 transition-opacity duration-300">
+                                <span class="text-secondary font-bold text-sm uppercase tracking-wider mb-1">Wedding</span>
+                                <span class="text-white font-serif text-xl">5-Tier Floral Cascade</span>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/70 to-transparent">
+                                <span class="text-white text-xs font-bold uppercase tracking-wider">Gold Coast Wedding</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="split-card group cursor-pointer">
+                        <div class="relative rounded-2xl overflow-hidden h-72">
+                            <img src="images/img6.webp" alt="Birthday cake" class="split-img w-full h-full object-cover transition-transform duration-700" />
+                            <div class="split-overlay absolute inset-0 bg-primary/80 flex flex-col items-center justify-center opacity-0 transition-opacity duration-300">
+                                <span class="text-secondary font-bold text-sm uppercase tracking-wider mb-1">Birthday</span>
+                                <span class="text-white font-serif text-xl">Galaxy Drip Cake</span>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/70 to-transparent">
+                                <span class="text-white text-xs font-bold uppercase tracking-wider">Milestone Celebration</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="split-card group cursor-pointer">
+                        <div class="relative rounded-2xl overflow-hidden h-72">
+                            <img src="images/img1.avif" alt="Corporate cake" class="split-img w-full h-full object-cover transition-transform duration-700" />
+                            <div class="split-overlay absolute inset-0 bg-primary/80 flex flex-col items-center justify-center opacity-0 transition-opacity duration-300">
+                                <span class="text-secondary font-bold text-sm uppercase tracking-wider mb-1">Corporate</span>
+                                <span class="text-white font-serif text-xl">Brand Launch Display</span>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/70 to-transparent">
+                                <span class="text-white text-xs font-bold uppercase tracking-wider">Tech Company Gala</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 6. Trust & Guarantees ===== -->
+        <section class="py-20 bg-white dark:bg-[#1A1114] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="bg-primary dark:bg-[#2A1C20] rounded-3xl p-10 md:p-14 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-80 h-80 bg-secondary/10 rounded-full blur-[100px] pointer-events-none"></div>
+                    <div class="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full blur-[80px] pointer-events-none"></div>
+
+                    <div class="text-center mb-12 relative z-10">
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-white mb-3">Our Promise to You</h2>
+                        <p class="text-white/60">Every order is backed by these unwavering commitments.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+                        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center group hover:bg-white/15 transition-all">
+                            <div class="w-14 h-14 rounded-xl bg-secondary/20 flex items-center justify-center text-secondary text-xl mx-auto mb-4 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-certificate"></i>
+                            </div>
+                            <h3 class="font-bold text-white mb-1 text-sm">Satisfaction Guaranteed</h3>
+                            <p class="text-white/50 text-xs leading-relaxed">If it doesn't match your vision, we'll remake it at no extra cost.</p>
+                        </div>
+
+                        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center group hover:bg-white/15 transition-all">
+                            <div class="w-14 h-14 rounded-xl bg-secondary/20 flex items-center justify-center text-secondary text-xl mx-auto mb-4 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-truck"></i>
+                            </div>
+                            <h3 class="font-bold text-white mb-1 text-sm">Safe Delivery</h3>
+                            <p class="text-white/50 text-xs leading-relaxed">Temperature-controlled vehicles with real-time delivery tracking.</p>
+                        </div>
+
+                        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center group hover:bg-white/15 transition-all">
+                            <div class="w-14 h-14 rounded-xl bg-secondary/20 flex items-center justify-center text-secondary text-xl mx-auto mb-4 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-leaf"></i>
+                            </div>
+                            <h3 class="font-bold text-white mb-1 text-sm">100% Organic</h3>
+                            <p class="text-white/50 text-xs leading-relaxed">Certified organic ingredients sourced from local farms daily.</p>
+                        </div>
+
+                        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center group hover:bg-white/15 transition-all">
+                            <div class="w-14 h-14 rounded-xl bg-secondary/20 flex items-center justify-center text-secondary text-xl mx-auto mb-4 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-headset"></i>
+                            </div>
+                            <h3 class="font-bold text-white mb-1 text-sm">Dedicated Support</h3>
+                            <p class="text-white/50 text-xs leading-relaxed">Direct line to your assigned pastry chef throughout the process.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ===== 8. Contact Details CTA ===== -->
+        <section class="py-20 bg-primary dark:bg-[#110A0C] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <a href="tel:+1234567890" class="group">
+                        <div class="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center text-secondary text-2xl mx-auto mb-5 group-hover:scale-110 group-hover:bg-secondary/20 transition-all duration-300">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1">Call Us</h3>
+                        <p class="text-white/50 text-sm">(555) 123-4567</p>
+                    </a>
+                    <a href="mailto:hello@sweetstudio.com" class="group">
+                        <div class="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center text-secondary text-2xl mx-auto mb-5 group-hover:scale-110 group-hover:bg-secondary/20 transition-all duration-300">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1">Email Us</h3>
+                        <p class="text-white/50 text-sm">hello@sweetstudio.com</p>
+                    </a>
+                    <a href="contact.html" class="group">
+                        <div class="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center text-secondary text-2xl mx-auto mb-5 group-hover:scale-110 group-hover:bg-secondary/20 transition-all duration-300">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1">Visit Us</h3>
+                        <p class="text-white/50 text-sm">123 Baker Street, Brooklyn NY</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="navbar.js"></script>
+    <script src="footer.js"></script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Form submission handler
+        const form = document.querySelector('#order-form form');
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you! Your custom order inquiry has been submitted. We\'ll get back to you within 24 hours with a personalized response.');
+                form.reset();
+            });
+        }
+    });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SweetStudio | About Us - Our Story</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#523940',
+                        secondary: '#E75480',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .parallax-hero { background-attachment: fixed; background-size: cover; background-position: center; }
+        @media (max-width: 768px) { .parallax-hero { background-attachment: scroll; } }
+        .timeline-line::-webkit-scrollbar { height: 6px; }
+        .timeline-line::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); border-radius: 10px; }
+        .timeline-line::-webkit-scrollbar-thumb { background: #E75480; border-radius: 10px; }
+        .value-card:hover .value-icon { transform: scale(1.15) rotate(-5deg); }
+        @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+        .fade-up { animation: fadeUp 0.7s ease-out forwards; }
+    </style>
+</head>
+<body class="bg-white dark:bg-[#1A1114] text-slate-900 dark:text-gray-200 font-sans antialiased selection:bg-secondary selection:text-white transition-colors duration-500">
+
+    <div id="navbar"></div>
+
+    <main class="pt-20 md:pt-24">
+
+        <!-- ===== 1. Full-Width Parallax Hero ===== -->
+        <section class="relative h-[70vh] md:h-[80vh] flex items-end overflow-hidden parallax-hero" style="background-image: url('images/bg2.avif'); background-size: cover; background-position: center;">
+            <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/60 to-transparent dark:from-[#110A0C] dark:via-[#110A0C]/70"></div>
+            <div class="max-w-[1440px] w-full mx-auto px-6 lg:px-10 pb-16 md:pb-20 relative z-10">
+                <div class="max-w-3xl">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white font-bold text-xs tracking-widest uppercase mb-6">
+                        <i class="fa-solid fa-heart text-secondary"></i> Our Story
+                    </div>
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white leading-[1.08] mb-6">
+                        Born from a<br/> <span class="text-secondary">Love of Baking</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-white/70 max-w-xl leading-relaxed mb-8">
+                        A family recipe, a dream kitchen, and twelve years of turning celebrations into unforgettable sweet memories.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="contact.html" class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-secondary text-white font-bold hover:shadow-xl hover:shadow-secondary/30 hover:-translate-y-1 transition-all duration-300">
+                            Meet The Team <i class="fa-solid fa-arrow-right-long"></i>
+                        </a>
+                        <a href="flavors.html" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-white/25 text-white font-bold hover:bg-white/10 transition-all duration-300">
+                            Explore Flavors
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 2. Large Mission Statement / Quote ===== -->
+        <section class="py-24 md:py-32 bg-white dark:bg-[#1A1114] relative overflow-hidden transition-colors duration-500">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[150px] pointer-events-none"></div>
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10 relative z-10">
+                <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+                    <div class="w-full lg:w-5/12 shrink-0">
+                        <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-primary/10 dark:shadow-black/40">
+                            <img src="images\img12.avif" alt="Our founder" class="w-full h-[400px] md:h-[500px] object-cover" />
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary/90 to-transparent p-8">
+                                <p class="text-white font-serif italic text-lg">"Every cake is a canvas, every celebration is a masterpiece."</p>
+                                <span class="text-white/60 text-sm mt-2 block">- Amara Okafor, Founder</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-7/12">
+                        <span class="text-secondary font-bold text-xs tracking-widest uppercase mb-4 block">Our Mission</span>
+                        <h2 class="text-3xl md:text-5xl font-serif font-bold text-primary dark:text-white mb-8 leading-tight">
+                            To Make Every<br/> Celebration <span class="text-secondary">Unforgettable</span>
+                        </h2>
+                        <div class="space-y-5 text-slate-600 dark:text-gray-400 leading-relaxed">
+                            <p>
+                                SweetStudio was born in a small Brooklyn kitchen in 2014, when founder Amara Okafor decided to leave her corporate career to pursue her lifelong passion for pastry arts. What started as custom cake orders for friends quickly evolved into one of the city's most sought-after artisan dessert studios.
+                            </p>
+                            <p>
+                                Today, our team of six talented pastry chefs creates over 400 custom designs per year. We believe that dessert is not just food — it's an experience, an emotion, a centerpiece that ties a celebration together. Every creation that leaves our studio carries with it a promise: it will look extraordinary and taste even better.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-6 mt-10">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+                                    <i class="fa-solid fa-award text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-primary dark:text-white text-sm">Award Winning</div>
+                                    <div class="text-xs text-slate-500 dark:text-gray-400">Best Bakery 2024</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+                                    <i class="fa-solid fa-certificate text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-primary dark:text-white text-sm">Certified Organic</div>
+                                    <div class="text-xs text-slate-500 dark:text-gray-400">Since 2019</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 3. Our Journey - Vertical Timeline ===== -->
+        <section class="py-24 bg-slate-50 dark:bg-[#110A0C] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10 mb-16">
+                <div class="text-center max-w-2xl mx-auto">
+                    <span class="text-secondary font-bold text-sm tracking-wider uppercase mb-3 block">Our Journey</span>
+                    <h2 class="text-3xl md:text-5xl font-serif font-bold text-primary dark:text-white mb-4">Milestones That Matter</h2>
+                </div>
+            </div>
+
+            <div class="max-w-4xl mx-auto px-6 lg:px-10 relative">
+                <!-- Vertical center line -->
+                <div class="absolute left-6 lg:left-1/2 top-0 bottom-0 w-px bg-slate-200 dark:bg-gray-800 -translate-x-1/2"></div>
+
+                <!-- 2014 - Left -->
+                <div class="relative flex flex-col lg:flex-row items-start mb-12 last:mb-0">
+                    <div class="lg:w-1/2 lg:pr-12 pl-14 lg:pl-0 lg:text-right">
+                        <div class="bg-white dark:bg-[#2A1C20] rounded-2xl p-6 border border-slate-200 dark:border-gray-800 hover:shadow-xl hover:border-secondary/30 transition-all duration-500">
+                            <span class="text-4xl font-serif font-bold text-secondary mb-2 block">2014</span>
+                            <h3 class="font-bold text-lg text-primary dark:text-white mb-2">The Beginning</h3>
+                            <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">Amara Okafor opens SweetStudio from a 200 sq ft home kitchen in Brooklyn, fulfilling her first 12 custom orders.</p>
+                        </div>
+                    </div>
+                    <!-- Dot -->
+                    <div class="absolute left-6 lg:left-1/2 top-6 -translate-x-1/2 w-4 h-4 rounded-full bg-secondary border-4 border-slate-50 dark:border-[#110A0C] z-10"></div>
+                    <div class="hidden lg:block lg:w-1/2 lg:pl-12"></div>
+                </div>
+
+                <!-- 2016 - Right -->
+                <div class="relative flex flex-col lg:flex-row items-start mb-12 last:mb-0">
+                    <div class="hidden lg:block lg:w-1/2 lg:pr-12"></div>
+                    <div class="lg:w-1/2 lg:pl-12 pl-14">
+                        <div class="bg-white dark:bg-[#2A1C20] rounded-2xl p-6 border border-slate-200 dark:border-gray-800 hover:shadow-xl hover:border-secondary/30 transition-all duration-500">
+                            <span class="text-4xl font-serif font-bold text-secondary mb-2 block">2016</span>
+                            <h3 class="font-bold text-lg text-primary dark:text-white mb-2">First Studio</h3>
+                            <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">Moved to a dedicated 1,200 sq ft studio with professional equipment. Hired our first two pastry chefs.</p>
+                        </div>
+                    </div>
+                    <!-- Dot -->
+                    <div class="absolute left-6 lg:left-1/2 top-6 -translate-x-1/2 w-4 h-4 rounded-full bg-secondary border-4 border-slate-50 dark:border-[#110A0C] z-10"></div>
+                </div>
+
+                <!-- 2019 - Left -->
+                <div class="relative flex flex-col lg:flex-row items-start mb-12 last:mb-0">
+                    <div class="lg:w-1/2 lg:pr-12 pl-14 lg:pl-0 lg:text-right">
+                        <div class="bg-white dark:bg-[#2A1C20] rounded-2xl p-6 border border-slate-200 dark:border-gray-800 hover:shadow-xl hover:border-secondary/30 transition-all duration-500">
+                            <span class="text-4xl font-serif font-bold text-secondary mb-2 block">2019</span>
+                            <h3 class="font-bold text-lg text-primary dark:text-white mb-2">Organic Certified</h3>
+                            <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">Achieved certified organic status. Partnered with 8 local farms for seasonal ingredient sourcing.</p>
+                        </div>
+                    </div>
+                    <!-- Dot -->
+                    <div class="absolute left-6 lg:left-1/2 top-6 -translate-x-1/2 w-4 h-4 rounded-full bg-secondary border-4 border-slate-50 dark:border-[#110A0C] z-10"></div>
+                    <div class="hidden lg:block lg:w-1/2 lg:pl-12"></div>
+                </div>
+
+                <!-- 2021 - Right -->
+                <div class="relative flex flex-col lg:flex-row items-start mb-12 last:mb-0">
+                    <div class="hidden lg:block lg:w-1/2 lg:pr-12"></div>
+                    <div class="lg:w-1/2 lg:pl-12 pl-14">
+                        <div class="bg-white dark:bg-[#2A1C20] rounded-2xl p-6 border border-slate-200 dark:border-gray-800 hover:shadow-xl hover:border-secondary/30 transition-all duration-500">
+                            <span class="text-4xl font-serif font-bold text-secondary mb-2 block">2021</span>
+                            <h3 class="font-bold text-lg text-primary dark:text-white mb-2">Viral Moment</h3>
+                            <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">Our 5-tier galaxy wedding cake went viral with 4M+ views. Bookings tripled overnight.</p>
+                        </div>
+                    </div>
+                    <!-- Dot -->
+                    <div class="absolute left-6 lg:left-1/2 top-6 -translate-x-1/2 w-4 h-4 rounded-full bg-secondary border-4 border-slate-50 dark:border-[#110A0C] z-10"></div>
+                </div>
+
+                <!-- 2023 - Left -->
+                <div class="relative flex flex-col lg:flex-row items-start mb-12 last:mb-0">
+                    <div class="lg:w-1/2 lg:pr-12 pl-14 lg:pl-0 lg:text-right">
+                        <div class="bg-white dark:bg-[#2A1C20] rounded-2xl p-6 border border-slate-200 dark:border-gray-800 hover:shadow-xl hover:border-secondary/30 transition-all duration-500">
+                            <span class="text-4xl font-serif font-bold text-secondary mb-2 block">2023</span>
+                            <h3 class="font-bold text-lg text-primary dark:text-white mb-2">Award Winning</h3>
+                            <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">Named "Best Artisan Bakery" by NYC Food & Wine. Expanded studio to 3,500 sq ft.</p>
+                        </div>
+                    </div>
+                    <!-- Dot -->
+                    <div class="absolute left-6 lg:left-1/2 top-6 -translate-x-1/2 w-4 h-4 rounded-full bg-secondary border-4 border-slate-50 dark:border-[#110A0C] z-10"></div>
+                    <div class="hidden lg:block lg:w-1/2 lg:pl-12"></div>
+                </div>
+
+                <!-- 2026 - Right -->
+                <div class="relative flex flex-col lg:flex-row items-start mb-12 last:mb-0">
+                    <div class="hidden lg:block lg:w-1/2 lg:pr-12"></div>
+                    <div class="lg:w-1/2 lg:pl-12 pl-14">
+                        <div class="bg-white dark:bg-[#2A1C20] rounded-2xl p-6 border border-slate-200 dark:border-gray-800 hover:shadow-xl hover:border-secondary/30 transition-all duration-500">
+                            <span class="text-4xl font-serif font-bold text-secondary mb-2 block">2026</span>
+                            <h3 class="font-bold text-lg text-primary dark:text-white mb-2">Today</h3>
+                            <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">6 chefs, 2,500+ cakes delivered, and still handcrafting every single creation with love and precision.</p>
+                        </div>
+                    </div>
+                    <!-- Dot -->
+                    <div class="absolute left-6 lg:left-1/2 top-6 -translate-x-1/2 w-4 h-4 rounded-full bg-secondary border-4 border-slate-50 dark:border-[#110A0C] z-10"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 4. Meet Our Team ===== -->
+        <section class="py-24 bg-white dark:bg-[#1A1114] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-secondary font-bold text-sm tracking-wider uppercase mb-3 block">The Team</span>
+                    <h2 class="text-3xl md:text-5xl font-serif font-bold text-primary dark:text-white mb-6">Meet Our Pastry Artists</h2>
+                    <p class="text-slate-600 dark:text-gray-400">Each member brings a unique flavor of talent to our studio.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="group relative">
+                        <div class="relative rounded-2xl overflow-hidden mb-5">
+                            <img src="images\prog1.avif" alt="Amara Okafor" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-700" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-5 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                                <div class="flex gap-3">
+                                    <a href="#" class="w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-secondary transition-colors"><i class="fa-brands fa-instagram text-sm"></i></a>
+                                    <a href="#" class="w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-secondary transition-colors"><i class="fa-brands fa-linkedin-in text-sm"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-lg text-primary dark:text-white">Amara Okafor</h3>
+                        <p class="text-secondary text-sm font-medium">Founder & Head Chef</p>
+                    </div>
+
+                    <div class="group relative">
+                        <div class="relative rounded-2xl overflow-hidden mb-5">
+                            <img src="images\prog2.avif" alt="Clara Fontaine" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-700" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-5 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                                <div class="flex gap-3">
+                                    <a href="#" class="w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-secondary transition-colors"><i class="fa-brands fa-instagram text-sm"></i></a>
+                                    <a href="#" class="w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-secondary transition-colors"><i class="fa-brands fa-linkedin-in text-sm"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-lg text-primary dark:text-white">Clara Fontaine</h3>
+                        <p class="text-secondary text-sm font-medium">Senior Pastry Chef</p>
+                    </div>
+
+                    <div class="group relative">
+                        <div class="relative rounded-2xl overflow-hidden mb-5">
+                            <img src="images\prob1.avif" alt="Daniel Park" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-700" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-5 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                                <div class="flex gap-3">
+                                    <a href="#" class="w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-secondary transition-colors"><i class="fa-brands fa-instagram text-sm"></i></a>
+                                    <a href="#" class="w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-secondary transition-colors"><i class="fa-brands fa-linkedin-in text-sm"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-lg text-primary dark:text-white">Daniel Park</h3>
+                        <p class="text-secondary text-sm font-medium">Cake Sculptor</p>
+                    </div>
+
+                    <div class="group relative">
+                        <div class="relative rounded-2xl overflow-hidden mb-5">
+                            <img src="images\prog3.avif" alt="Lucia Reyes" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-700" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-5 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                                <div class="flex gap-3">
+                                    <a href="#" class="w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-secondary transition-colors"><i class="fa-brands fa-instagram text-sm"></i></a>
+                                    <a href="#" class="w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-secondary transition-colors"><i class="fa-brands fa-linkedin-in text-sm"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-lg text-primary dark:text-white">Lucia Reyes</h3>
+                        <p class="text-secondary text-sm font-medium">Macaron Specialist</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 5. Behind The Scenes - Asymmetric Photo Grid ===== -->
+        <section class="py-24 bg-slate-50 dark:bg-[#110A0C] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+                    <div class="w-full lg:w-5/12">
+                        <span class="text-secondary font-bold text-xs tracking-widest uppercase mb-4 block">Behind The Scenes</span>
+                        <h2 class="text-3xl md:text-5xl font-serif font-bold text-primary dark:text-white mb-6 leading-tight">Inside Our Kitchen</h2>
+                        <p class="text-slate-600 dark:text-gray-400 leading-relaxed mb-8">
+                            Our 3,500 sq ft studio in Brooklyn is where the magic happens. From hand-mixing batters at dawn to piping delicate sugar flowers at midnight, every detail is crafted with obsessive precision and genuine love.
+                        </p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary shrink-0 mt-0.5"><i class="fa-solid fa-kitchen-set text-lg"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-primary dark:text-white text-sm">Professional Grade</h4>
+                                    <p class="text-slate-500 dark:text-gray-400 text-xs">Rational ovens, MarbleTech tempering machines, and a dedicated sugar flower room.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary shrink-0 mt-0.5"><i class="fa-solid fa-seedling text-lg"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-primary dark:text-white text-sm">Farm Partnerships</h4>
+                                    <p class="text-slate-500 dark:text-gray-400 text-xs">Direct relationships with 8 local organic farms for seasonal fruits and dairy.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary shrink-0 mt-0.5"><i class="fa-solid fa-heart text-lg"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-primary dark:text-white text-sm">Made From Scratch</h4>
+                                    <p class="text-slate-500 dark:text-gray-400 text-xs">Zero premixes. Every component — from ganache to fondant — is made in-house daily.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="w-full lg:w-7/12 grid grid-cols-3 grid-rows-3 gap-3 h-[400px] md:h-[520px]">
+                        <div class="col-span-2 row-span-2 rounded-2xl overflow-hidden">
+                            <img src="images\img13.avif" alt="Kitchen" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+                        </div>
+                        <div class="rounded-2xl overflow-hidden">
+                            <img src="images\img14.avif" alt="Detail 1" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
+                        </div>
+                        <div class="rounded-2xl overflow-hidden">
+                            <img src="images\img15.avif" alt="Detail 2" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
+                        </div>
+                        <div class="rounded-2xl overflow-hidden">
+                            <img src="images\img16.avif" alt="Detail 3" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
+                        </div>
+                        <div class="rounded-2xl overflow-hidden">
+                            <img src="images\img17.webp" alt="Detail 4" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 6. Our Values - Bento Grid ===== -->
+        <section class="py-24 bg-white dark:bg-[#1A1114] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-secondary font-bold text-sm tracking-wider uppercase mb-3 block">What We Stand For</span>
+                    <h2 class="text-3xl md:text-5xl font-serif font-bold text-primary dark:text-white">Our Core Values</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div class="value-card bg-slate-50 dark:bg-[#2A1C20] rounded-2xl p-8 border border-slate-200 dark:border-gray-800 hover:border-secondary/40 transition-all duration-500 group lg:row-span-2">
+                        <div class="value-icon w-16 h-16 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary text-2xl mb-6 transition-transform duration-500">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary dark:text-white mb-3">Artistry First</h3>
+                        <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed mb-6">We approach every cake as a work of art. Our team studies color theory, floral arrangements, and architectural design to create desserts that are visually breathtaking before a single bite is taken.</p>
+                        <img src="images/img18.avif" alt="Artistry" class="w-full h-32 object-cover rounded-xl" />
+                    </div>
+
+                    <div class="value-card bg-slate-50 dark:bg-[#2A1C20] rounded-2xl p-8 border border-slate-200 dark:border-gray-800 hover:border-secondary/40 transition-all duration-500 group">
+                        <div class="value-icon w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary text-xl mb-5 transition-transform duration-500">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-primary dark:text-white mb-2">Sustainably Sourced</h3>
+                        <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">Organic flour, cage-free eggs, fair-trade chocolate — we source responsibly because great taste shouldn't come at the planet's expense.</p>
+                    </div>
+
+                    <div class="value-card bg-slate-50 dark:bg-[#2A1C20] rounded-2xl p-8 border border-slate-200 dark:border-gray-800 hover:border-secondary/40 transition-all duration-500 group">
+                        <div class="value-icon w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary text-xl mb-5 transition-transform duration-500">
+                            <i class="fa-solid fa-handshake-angle"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-primary dark:text-white mb-2">Client Partnership</h3>
+                        <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">Your vision leads. We listen, sketch, refine, and collaborate until every detail reflects your personal story and celebration style.</p>
+                    </div>
+
+                    <div class="value-card bg-slate-50 dark:bg-[#2A1C20] rounded-2xl p-8 border border-slate-200 dark:border-gray-800 hover:border-secondary/40 transition-all duration-500 group">
+                        <div class="value-icon w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary text-xl mb-5 transition-transform duration-500">
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-primary dark:text-white mb-2">Taste Over Trend</h3>
+                        <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">Beautiful cakes must taste extraordinary. We never sacrifice flavor for aesthetics — every layer is balanced, every filling is bold.</p>
+                    </div>
+
+                    <div class="value-card bg-slate-50 dark:bg-[#2A1C20] rounded-2xl p-8 border border-slate-200 dark:border-gray-800 hover:border-secondary/40 transition-all duration-500 group md:col-span-2 lg:col-span-1">
+                        <div class="value-icon w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary text-xl mb-5 transition-transform duration-500">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-primary dark:text-white mb-2">Zero Compromise</h3>
+                        <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">From the first tasting to the final delivery, we hold ourselves to an unwavering standard. If it doesn't meet our bar, it doesn't leave the studio.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 7. Stats Banner ===== -->
+        <section class="py-16 bg-primary dark:bg-[#110A0C] relative overflow-hidden transition-colors duration-500">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-[120px] pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 w-80 h-80 bg-white/5 rounded-full blur-[100px] pointer-events-none"></div>
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10 relative z-10">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div>
+                        <div class="text-4xl md:text-5xl font-serif font-bold text-secondary mb-2">12+</div>
+                        <p class="text-sm text-white/60 font-semibold uppercase tracking-wider">Years of Craft</p>
+                    </div>
+                    <div>
+                        <div class="text-4xl md:text-5xl font-serif font-bold text-white mb-2">2,500+</div>
+                        <p class="text-sm text-white/60 font-semibold uppercase tracking-wider">Cakes Delivered</p>
+                    </div>
+                    <div>
+                        <div class="text-4xl md:text-5xl font-serif font-bold text-secondary mb-2">6</div>
+                        <p class="text-sm text-white/60 font-semibold uppercase tracking-wider">Pastry Chefs</p>
+                    </div>
+                    <div>
+                        <div class="text-4xl md:text-5xl font-serif font-bold text-white mb-2">4.9<i class="fa-solid fa-star text-secondary text-2xl ml-1"></i></div>
+                        <p class="text-sm text-white/60 font-semibold uppercase tracking-wider">Client Rating</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 8. Final CTA ===== -->
+        <section class="py-16 md:py-24 bg-white dark:bg-[#1A1114] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="relative rounded-3xl overflow-hidden">
+                    <img src="images/bg3.avif" alt="Studio" class="w-full h-[500px] md:h-[500px] object-cover" />
+                    <!-- Mobile: bottom gradient | Desktop: left-to-right gradient -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/70 to-transparent md:bg-gradient-to-r md:from-primary/95 md:via-primary/80 md:to-primary/50 dark:from-[#110A0C] dark:via-[#110A0C]/80 md:dark:to-transparent"></div>
+                    <div class="absolute inset-0 flex items-end md:items-center pb-10 md:pb-0">
+                        <div class="max-w-xl px-6 md:px-16 w-full">
+                            <h2 class="text-2xl md:text-5xl font-serif font-bold text-white mb-4 md:mb-6 leading-tight">Let's Create Something Beautiful Together</h2>
+                            <p class="text-white/70 text-sm md:text-lg mb-6 md:mb-10 leading-relaxed">Whether it's a wedding, birthday, or corporate gala — we'd love to be part of your celebration story.</p>
+                            <div class="flex flex-col sm:flex-row gap-3 md:gap-4">
+                                <a href="orders.html" class="inline-flex items-center justify-center gap-3 px-6 md:px-8 py-3.5 md:py-4 rounded-full bg-secondary text-white font-bold text-sm md:text-base hover:shadow-xl hover:shadow-secondary/30 hover:-translate-y-1 transition-all duration-300">
+                                    Start Your Order <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                                <a href="contact.html" class="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3.5 md:py-4 rounded-full border-2 border-white/30 text-white font-bold text-sm md:text-base hover:bg-white/10 transition-all duration-300">
+                                    Get in Touch
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="navbar.js"></script>
+    <script src="footer.js"></script>
+
+</body>
+</html>

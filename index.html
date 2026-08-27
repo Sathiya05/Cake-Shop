@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SweetStudio | Custom Desserts & Cakes</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+              
+    <!-- Tailwind Configuration for Theme Colors & Dark Mode -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class', /* Required for the toggle to work */
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#523940', /* Muted Plum / Chocolate */
+                        secondary: '#E75480', /* Signature Pink */
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white dark:bg-[#1A1114] text-slate-900 dark:text-gray-200 font-sans antialiased selection:bg-secondary selection:text-white transition-colors duration-500">
+
+    <!-- Navbar Mount Point -->
+    <div id="navbar"></div>
+
+    <!-- Main Content Wrapper -->
+    <main class="pt-20 md:pt-24">
+        
+        <!-- 1. Hero Section -->
+        <section class="relative w-full min-h-[calc(100vh-5rem)] md:min-h-[calc(100vh-6rem)] flex items-center overflow-hidden bg-primary dark:bg-[#110A0C]">
+            
+            <!-- Background Image -->
+            <img src="images\bg1.avif" 
+                 alt="Elegant custom cake" 
+                 class="absolute inset-0 w-full h-full object-cover object-center z-0 opacity-40 dark:opacity-20 transition-opacity duration-500" />
+            
+            <div class="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-primary/40 dark:from-[#110A0C] dark:via-[#110A0C]/90 dark:to-transparent z-0"></div>
+
+            <div class="max-w-[1440px] w-full mx-auto px-6 lg:px-10 relative z-10 py-16 md:py-20">
+                <div class="max-w-3xl mx-auto text-center">
+                    
+                    <!-- Glassmorphic Badge -->
+                    <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold text-sm mb-8 shadow-sm mx-auto">
+                        <span class="relative flex h-3 w-3">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-secondary"></span>
+                        </span>
+                        Now Booking for 2026-27 Wedding Season
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-[1.15] text-white font-serif">
+                        Handcrafted Elegance <br/>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-pink-300 drop-shadow-sm">
+                            In Every Bite
+                        </span>
+                    </h1>
+                    
+                    <p class="text-lg md:text-xl text-slate-200 mb-10 leading-relaxed max-w-xl mx-auto font-medium drop-shadow-md">
+                        Bespoke cakes, delicate pastries, and unforgettable dessert tables designed exclusively for your most cherished celebrations.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-5 justify-center">
+                        <a href="menus.html" class="flex items-center justify-center px-8 py-4 rounded-xl bg-secondary text-white font-bold text-lg hover:shadow-xl hover:shadow-secondary/30 hover:-translate-y-1 transition-all duration-300 gap-3 border border-secondary">
+                            Explore Menu <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="orders.html" class="flex items-center justify-center px-8 py-4 rounded-xl bg-white/5 backdrop-blur-sm border-2 border-white/30 hover:border-secondary hover:bg-secondary/10 font-bold text-lg text-white transition-all duration-300 hover:-translate-y-1">
+                            Book a Tasting
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Seasonal Banner -->
+        <section class="py-6 bg-gradient-to-r from-secondary to-pink-600 dark:from-pink-700 dark:to-secondary transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-8">
+                    <div class="flex items-center gap-4 text-white">
+                        <div class="w-12 h-12 shrink-0 rounded-full bg-white/20 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-gift"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-base sm:text-lg">Spring Collection is Here!</h3>
+                            <p class="text-pink-100 text-sm">Discover our new seasonal flavors featuring fresh berries and delicate floral infusions.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+                        <a href="menu.html" class="px-6 py-2.5 rounded-xl bg-white dark:bg-[#1A1114] text-primary dark:text-white font-bold text-sm text-center hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
+                            Order Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Features / Why Choose Us -->
+        <section class="py-20 bg-white dark:bg-[#1A1114] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4 text-primary dark:text-white">The SweetStudio Difference</h2>
+                    <p class="text-slate-600 dark:text-gray-400">We blend artistic vision with culinary excellence to create desserts that look as stunning as they taste.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="rounded-2xl bg-slate-50 dark:bg-[#2A1C20] border border-slate-100 dark:border-gray-800 hover:border-secondary/50 dark:hover:border-secondary/50 transition-colors group overflow-hidden">
+                        <div class="h-48 overflow-hidden">
+                            <img src="images\img2.webp" 
+                                 alt="Custom cake design" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-xl font-bold mb-3 text-primary dark:text-white">Custom Design</h3>
+                            <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">
+                                Tailored masterpieces crafted to perfectly match your event's unique theme, colors, and personal style.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl bg-slate-50 dark:bg-[#2A1C20] border border-slate-100 dark:border-gray-800 hover:border-secondary/50 dark:hover:border-secondary/50 transition-colors group overflow-hidden">
+                        <div class="h-48 overflow-hidden">
+                            <img src="images\img3.avif" 
+                                 alt="Premium ingredients" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-xl font-bold mb-3 text-primary dark:text-white">Premium Ingredients</h3>
+                            <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">
+                                We source only the finest organic flours, rich European chocolates, and seasonal local fruits.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl bg-slate-50 dark:bg-[#2A1C20] border border-slate-100 dark:border-gray-800 hover:border-secondary/50 dark:hover:border-secondary/50 transition-colors group overflow-hidden">
+                        <div class="h-48 overflow-hidden">
+                            <img src="images\img4.avif" 
+                                 alt="Cake delivery setup" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-xl font-bold mb-3 text-primary dark:text-white">White-Glove Delivery</h3>
+                            <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">
+                                Safe, temperature-controlled delivery and meticulous on-site setup for flawless presentation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Signature Collections (Image Grid) -->
+        <section class="py-24 bg-slate-50 dark:bg-[#110A0C] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-secondary font-bold text-sm tracking-wider uppercase mb-3 block">Collections</span>
+                    <h2 class="text-3xl md:text-5xl font-serif font-bold text-primary dark:text-white mb-6">Our Dessert Portfolios</h2>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                    <!-- Wedding -->
+                    <div class="bg-white dark:bg-[#2A1C20] rounded-3xl overflow-hidden border border-slate-200 dark:border-gray-800 shadow-sm hover:shadow-xl transition-all duration-500 group">
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="images\img5.avif" alt="Wedding cake" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-6 text-white z-10">
+                                <h3 class="text-2xl font-bold font-serif">Wedding Cakes</h3>
+                            </div>
+                        </div>
+                        <div class="p-6 md:p-8">
+                            <p class="text-sm text-slate-600 dark:text-gray-400 mb-6">Multi-tiered elegance designed for your big day, featuring intricate fondant work and sugar florals.</p>
+                            <a href="orders.html" class="block w-full py-3 rounded-xl bg-primary dark:bg-white text-white dark:text-primary font-bold text-sm text-center hover:bg-secondary dark:hover:bg-secondary dark:hover:text-white transition-all">View Gallery</a>
+                        </div>
+                    </div>
+
+                    <!-- Birthdays -->
+                    <div class="bg-white dark:bg-[#2A1C20] rounded-3xl overflow-hidden border border-slate-200 dark:border-gray-800 shadow-sm hover:shadow-xl transition-all duration-500 group relative">
+                        <span class="absolute top-4 right-4 z-10 bg-secondary text-white text-xs font-bold px-4 py-1 rounded-full shadow-md">Popular</span>
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="images\img6.webp" alt="Celebration cake" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-6 text-white z-10">
+                                <h3 class="text-2xl font-bold font-serif">Celebration Cakes</h3>
+                            </div>
+                        </div>
+                        <div class="p-6 md:p-8">
+                            <p class="text-sm text-slate-600 dark:text-gray-400 mb-6">Joyful, vibrant creations for birthdays, anniversaries, and milestones. Fully customizable themes.</p>
+                            <a href="orders.html" class="block w-full py-3 rounded-xl bg-primary dark:bg-white text-white dark:text-primary font-bold text-sm text-center hover:bg-secondary dark:hover:bg-secondary dark:hover:text-white transition-all">View Gallery</a>
+                        </div>
+                    </div>
+
+                    <!-- Pastries -->
+                    <div class="bg-white dark:bg-[#2A1C20] rounded-3xl overflow-hidden border border-slate-200 dark:border-gray-800 shadow-sm hover:shadow-xl transition-all duration-500 group sm:col-span-2 lg:col-span-1">
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="images\img7.avif" alt="Dessert table spread" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-6 text-white z-10">
+                                <h3 class="text-2xl font-bold font-serif">Dessert Tables</h3>
+                            </div>
+                        </div>
+                        <div class="p-6 md:p-8">
+                            <p class="text-sm text-slate-600 dark:text-gray-400 mb-6">Curated assortments of macarons, tartlets, cupcakes, and truffles designed to match your event.</p>
+                            <a href="orders.html" class="block w-full py-3 rounded-xl bg-primary dark:bg-white text-white dark:text-primary font-bold text-sm text-center hover:bg-secondary dark:hover:bg-secondary dark:hover:text-white transition-all">View Menu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Flavor Guide -->
+        <section class="py-24 bg-white dark:bg-[#1A1114] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-secondary text-sm tracking-wider uppercase font-bold">The Menu</span>
+                    <h2 class="text-3xl md:text-5xl font-serif font-bold mt-2 mb-4 text-primary dark:text-white">Favorite Pairings</h2>
+                    <p class="text-slate-600 dark:text-gray-400">Explore our most requested flavor combinations.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="group relative bg-slate-50 dark:bg-[#2A1C20] rounded-2xl p-6 border border-slate-200 dark:border-gray-800 hover:border-secondary/50 dark:hover:border-secondary/50 hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+                        <div class="w-12 h-12 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-lemon"></i></div>
+                        <h3 class="font-bold text-lg mb-1 text-primary dark:text-white">Lemon Raspberry</h3>
+                        <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">Bright lemon sponge layered with tart raspberry compote and vanilla buttercream.</p>
+                    </div>
+                    <div class="group relative bg-slate-50 dark:bg-[#2A1C20] rounded-2xl p-6 border border-slate-200 dark:border-gray-800 hover:border-secondary/50 dark:hover:border-secondary/50 hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+                        <div class="w-12 h-12 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-mug-hot"></i></div>
+                        <h3 class="font-bold text-lg mb-1 text-primary dark:text-white">Mocha Hazelnut</h3>
+                        <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">Rich espresso chocolate cake with creamy hazelnut praline filling.</p>
+                    </div>
+                    <div class="group relative bg-slate-50 dark:bg-[#2A1C20] rounded-2xl p-6 border border-slate-200 dark:border-gray-800 hover:border-secondary/50 dark:hover:border-secondary/50 hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+                        <div class="w-12 h-12 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-spoon"></i></div>
+                        <h3 class="font-bold text-lg mb-1 text-primary dark:text-white">Vanilla Bean Caramel</h3>
+                        <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">Classic Madagascar vanilla cake with salted caramel drip and Swiss meringue.</p>
+                    </div>
+                    <div class="group relative bg-slate-50 dark:bg-[#2A1C20] rounded-2xl p-6 border border-slate-200 dark:border-gray-800 hover:border-secondary/50 dark:hover:border-secondary/50 hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+                        <div class="w-12 h-12 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-cookie"></i></div>
+                        <h3 class="font-bold text-lg mb-1 text-primary dark:text-white">Pistachio Rose</h3>
+                        <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">Earthy pistachio cake accented with subtle rosewater mascarpone cream.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Process / How It Works -->
+        <section class="py-24 bg-slate-50 dark:bg-[#110A0C] transition-colors duration-500 overflow-hidden">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+                    
+                    <div class="w-full lg:w-1/2">
+                        <span class="text-secondary font-bold text-sm tracking-wider uppercase mb-3 block">Simple Process</span>
+                        <h2 class="text-3xl md:text-5xl font-serif font-bold text-primary dark:text-white mb-6 leading-tight">
+                            Bringing Your Vision <br> To Life
+                        </h2>
+                        <p class="text-slate-600 dark:text-gray-400 text-lg mb-8">
+                            From your initial inquiry to the final slice, we ensure a seamless and delightful experience.
+                        </p>
+                        <a href="orders.html" class="inline-flex items-center justify-center px-8 py-3.5 rounded-xl bg-secondary text-white font-bold text-base hover:bg-primary dark:hover:bg-white dark:hover:text-primary transition-all duration-300 shadow-lg shadow-secondary/25">
+                            Start Your Order
+                        </a>
+                    </div>
+
+                    <div class="w-full lg:w-1/2 relative">
+                        <div class="hidden md:block absolute left-8 top-10 bottom-10 w-0.5 bg-slate-200 dark:bg-gray-800 z-0"></div>
+
+                        <div class="space-y-10 relative z-10">
+                            <!-- Step 1 -->
+                            <div class="flex gap-6 group">
+                                <div class="shrink-0 w-16 h-16 rounded-full bg-white dark:bg-[#1A1114] border-4 border-slate-100 dark:border-gray-800 flex items-center justify-center text-xl font-bold text-slate-400 group-hover:border-secondary group-hover:text-secondary transition-colors duration-300 shadow-sm">
+                                    1
+                                </div>
+                                <div class="pt-3">
+                                    <h3 class="text-xl font-bold text-primary dark:text-white mb-2">Inquiry & Consultation</h3>
+                                    <p class="text-slate-600 dark:text-gray-400 text-sm">Reach out with your event date and ideas. We'll discuss themes, sizing, and design inspirations.</p>
+                                </div>
+                            </div>
+                            <!-- Step 2 -->
+                            <div class="flex gap-6 group">
+                                <div class="shrink-0 w-16 h-16 rounded-full bg-white dark:bg-[#1A1114] border-4 border-slate-100 dark:border-gray-800 flex items-center justify-center text-xl font-bold text-slate-400 group-hover:border-secondary group-hover:text-secondary transition-colors duration-300 shadow-sm">
+                                    2
+                                </div>
+                                <div class="pt-3">
+                                    <h3 class="text-xl font-bold text-primary dark:text-white mb-2">Cake Tasting</h3>
+                                    <p class="text-slate-600 dark:text-gray-400 text-sm">Sample a curated box of our signature cake and filling combinations to finalize your custom flavor profile.</p>
+                                </div>
+                            </div>
+                            <!-- Step 3 -->
+                            <div class="flex gap-6 group">
+                                <div class="shrink-0 w-16 h-16 rounded-full bg-secondary border-4 border-secondary/20 flex items-center justify-center text-xl font-bold text-white shadow-lg shadow-secondary/20">
+                                    3
+                                </div>
+                                <div class="pt-3">
+                                    <h3 class="text-xl font-bold text-primary dark:text-white mb-2">Creation & Delivery</h3>
+                                    <p class="text-slate-600 dark:text-gray-400 text-sm">We bake and meticulously decorate your dessert, handling delivery and setup so you can simply enjoy.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Testimonials -->
+        <section class="py-24 bg-white dark:bg-[#1A1114] relative overflow-hidden transition-colors duration-500">
+            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10 relative z-10">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <h2 class="text-3xl md:text-5xl font-serif font-bold text-primary dark:text-white mb-6">Sweet Words</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Review 1 -->
+                    <div class="bg-slate-50 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-800 rounded-2xl p-8 relative shadow-sm">
+                        <i class="fa-solid fa-quote-right absolute top-8 right-8 text-4xl text-slate-200 dark:text-gray-700"></i>
+                        <div class="flex gap-1 text-secondary mb-6 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-600 dark:text-gray-300 mb-8 italic relative z-10">
+                            "The most beautiful and delicious wedding cake we could have imagined. The Lemon Raspberry flavor was a massive hit!"
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <img src="images\g1.jpeg" alt="Sarah Jenkins" class="w-12 h-12 rounded-full object-cover border-2 border-secondary/30" />
+                            <div>
+                                <h4 class="text-primary dark:text-white font-bold text-sm">Sarah Jenkins</h4>
+                                <span class="text-slate-500 dark:text-gray-400 text-xs">Wedding Client</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="bg-slate-50 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-800 rounded-2xl p-8 relative shadow-sm">
+                        <i class="fa-solid fa-quote-right absolute top-8 right-8 text-4xl text-slate-200 dark:text-gray-700"></i>
+                        <div class="flex gap-1 text-secondary mb-6 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-600 dark:text-gray-300 mb-8 italic relative z-10">
+                            "Professional, elegant, attractive and simply stunning. SweetStudio handled our corporate event dessert table flawlessly."
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <img src="images\g2.jpeg" alt="Elena Rodriguez" class="w-12 h-12 rounded-full object-cover border-2 border-secondary/30" />
+                            <div>
+                                <h4 class="text-primary dark:text-white font-bold text-sm">Elena Rodriguez</h4>
+                                <span class="text-slate-500 dark:text-gray-400 text-xs">Event Coordinator</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="bg-slate-50 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-800 rounded-2xl p-8 relative shadow-sm">
+                        <i class="fa-solid fa-quote-right absolute top-8 right-8 text-4xl text-slate-200 dark:text-gray-700"></i>
+                        <div class="flex gap-1 text-secondary mb-6 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        <p class="text-slate-600 dark:text-gray-300 mb-8 italic relative z-10">
+                            "We ordered a custom 3D sculpted cake for my son's birthday and the detailing was incredible. Tasted even better than it looked!"
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <img src="images\b1.jpeg" alt="Michael Chen" class="w-12 h-12 rounded-full object-cover border-2 border-secondary/30" />
+                            <div>
+                                <h4 class="text-primary dark:text-white font-bold text-sm">Michael Chen</h4>
+                                <span class="text-slate-500 dark:text-gray-400 text-xs">Birthday Client</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Final Call to Action -->
+        <section class="py-12 bg-white dark:bg-[#1A1114] transition-colors duration-500">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
+                <div class="relative rounded-3xl overflow-hidden bg-primary dark:bg-[#2A1C20] border border-transparent dark:border-gray-800 p-8 sm:p-12 lg:p-20 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-10">
+                    
+                    <div class="absolute top-0 right-0 -mr-20 -mt-20 w-72 h-72 rounded-full bg-white/5 blur-2xl pointer-events-none"></div>
+                    <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-72 h-72 rounded-full bg-secondary/20 blur-2xl pointer-events-none"></div>
+                    
+                    <div class="relative z-10 max-w-2xl text-center lg:text-left">
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white mb-4 lg:mb-6 leading-tight">
+                            Planning a Special Event?
+                        </h2>
+                        <p class="text-slate-300 dark:text-gray-300 text-base sm:text-lg lg:text-xl mb-0 mx-auto lg:mx-0 max-w-xl lg:max-w-none">
+                            Our calendar fills up quickly. Contact us early to secure your date and schedule a design consultation and tasting.
+                        </p>
+                    </div>
+
+                    <div class="relative z-10 shrink-0 flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 w-full sm:w-auto mt-4 lg:mt-0">
+                        <a href="orders.html" class="flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 rounded-xl bg-secondary text-white font-bold text-base sm:text-lg hover:shadow-xl hover:-translate-y-1 hover:bg-pink-500 transition-all duration-300 w-full sm:w-auto whitespace-nowrap">
+                            Inquire Now
+                        </a>
+                        <a href="contact.html" class="flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 rounded-xl border-2 border-white/30 text-white font-bold text-base sm:text-lg hover:bg-white/10 transition-all duration-300 w-full sm:w-auto whitespace-nowrap">
+                            Contact Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Mount Point -->
+    <div id="footer"></div>
+
+    <!-- External Scripts -->
+    <script src="navbar.js"></script>
+        <script src="footer.js"></script>
+
+</body>
+</html>
