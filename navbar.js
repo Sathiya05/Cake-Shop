@@ -79,11 +79,11 @@ document.addEventListener("DOMContentLoaded", () => {
           
           <!-- Theme & RTL Toggles -->
           <div class="flex items-center gap-2 mr-2">
-           <button id="themeToggle" class="w-10 h-9 rounded-xl bg-slate-100 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-700 flex items-center justify-center text-slate-600 dark:text-gray-400 hover:border-secondary/40 hover:text-secondary transition-all" onclick="toggleTheme()">
+<button id="themeToggle" class="w-10 h-9 rounded-xl bg-slate-100 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-700 flex items-center justify-center text-slate-600 dark:text-gray-400 hover:border-secondary/40 hover:text-secondary transition-all">
                     <i class="fa-solid fa-moon text-sm dark:hidden"></i>
                     <i class="fa-solid fa-sun text-sm hidden dark:block"></i>
                 </button>
-           <button id="rtlToggle" class="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-100 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-700 text-xs font-bold text-slate-600 dark:text-gray-400 hover:border-secondary/40 transition-all" onclick="toggleRTL()">
+           <button id="rtlToggle" class="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-100 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-700 text-xs font-bold text-slate-600 dark:text-gray-400 hover:border-secondary/40 transition-all">
                     <i class="fa-solid fa-align-right text-[10px]"></i>
                     <span id="rtlLabel">RTL</span>
                 </button>
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <!-- Mobile Action Buttons -->
     <div class="mt-auto pt-8 flex flex-col w-full gap-3">
       <div class="flex items-center justify-center gap-3 mb-2">
-        <button id="themeToggle" class="w-10 h-9 rounded-xl bg-slate-100 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-700 flex items-center justify-center text-slate-600 dark:text-gray-400 hover:border-secondary/40 hover:text-secondary transition-all" onclick="toggleTheme()">
+        <button id="mobileThemeToggle" class="w-10 h-9 rounded-xl bg-slate-100 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-700 flex items-center justify-center text-slate-600 dark:text-gray-400 hover:border-secondary/40 hover:text-secondary transition-all">
                     <i class="fa-solid fa-moon text-sm dark:hidden"></i>
                     <i class="fa-solid fa-sun text-sm hidden dark:block"></i>
                 </button>
@@ -268,20 +268,19 @@ document.addEventListener("DOMContentLoaded", () => {
       document.documentElement.classList.remove('dark');
       localStorage.setItem('sweetstudio-theme', 'light');
     }
-    
+
     const icon = dark
       ? '<i class="fa-solid fa-sun text-base"></i>'
       : '<i class="fa-solid fa-moon text-base"></i>';
-    document.getElementById('themeToggle').innerHTML = icon;
-    document.getElementById('mobileThemeToggle').innerHTML = icon;
+    document.querySelectorAll('#themeToggle, #mobileThemeToggle').forEach((el) => {
+      el.innerHTML = icon;
+    });
   };
 
-  document.getElementById('themeToggle')?.addEventListener('click', () => {
-    applyTheme(!document.documentElement.classList.contains('dark'));
-  });
-
-  document.getElementById('mobileThemeToggle')?.addEventListener('click', () => {
-    applyTheme(!document.documentElement.classList.contains('dark'));
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('#themeToggle, #mobileThemeToggle')) {
+      applyTheme(!document.documentElement.classList.contains('dark'));
+    }
   });
 
   /* ==================== */
@@ -295,7 +294,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.documentElement.setAttribute('dir', 'ltr');
       localStorage.setItem('sweetstudio-dir', 'ltr');
     }
-    
+
     // Smoothly flip mobile drawer position without breaking layout
     const menu = document.getElementById('mobileMenu');
     if (menu) {
@@ -306,18 +305,17 @@ document.addEventListener("DOMContentLoaded", () => {
         menu.classList.add('right-0', 'translate-x-full');
       }
     }
-    
+
     const label = rtl ? 'LTR' : 'RTL';
-    document.getElementById('rtlToggle').innerHTML = `<span class="text-xs font-bold">${label}</span>`;
+    const rtlEl = document.getElementById('rtlToggle');
+    if (rtlEl) rtlEl.innerHTML = `<span class="text-xs font-bold">${label}</span>`;
     const mobileLabel = document.getElementById('mobileRtlLabel');
     if (mobileLabel) mobileLabel.textContent = label;
   };
 
-  document.getElementById('rtlToggle')?.addEventListener('click', () => {
-    applyDir(document.documentElement.getAttribute('dir') !== 'rtl');
-  });
-
-  document.getElementById('mobileRtlToggle')?.addEventListener('click', () => {
-    applyDir(document.documentElement.getAttribute('dir') !== 'rtl');
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('#rtlToggle, #mobileRtlToggle')) {
+      applyDir(document.documentElement.getAttribute('dir') !== 'rtl');
+    }
   });
 });
