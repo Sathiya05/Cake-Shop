@@ -62,23 +62,12 @@
     <!-- ===== Top Bar with Logo + Toggles ===== -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-[#1A1114]/80 backdrop-blur-xl border-b border-slate-200/50 dark:border-gray-800/50">
         <div class="max-w-[1440px] mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
-            <!-- Logo -->
-              <a href="index.html" class="relative z-[60] flex items-center gap-3 group shrink-0">
-            <div class="flex flex-col">
-                <span class="text-2xl md:text-3xl font-serif font-black tracking-tight text-[#E75480] transition-colors">
-                    Sweet<span class="text-[#523940] dark:text-white">Studio</span>
-                </span>
-                <span class="text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-gray-500 dark:text-gray-400 font-bold leading-none mt-1">
-                     Custom Desserts
-                </span>
-            </div>
-        </a>
+
 
             <!-- Toggles -->
-            <div class="flex items-center gap-3">
+<div class="flex items-center gap-3 ml-auto">
                 <!-- RTL Toggle -->
                 <button id="rtlToggle" class="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-100 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-700 text-xs font-bold text-slate-600 dark:text-gray-400 hover:border-secondary/40 transition-all" onclick="toggleRTL()">
-                    <i class="fa-solid fa-align-right text-[10px]"></i>
                     <span id="rtlLabel">LTR</span>
                 </button>
                 <!-- Theme Toggle -->
@@ -103,8 +92,8 @@
             <div class="absolute top-[50%] right-[25%] w-16 h-16 rounded-2xl bg-secondary/10 rotate-12 float-orb-3"></div>
 
             <div class="relative z-10 flex flex-col justify-center px-12 xl:px-20 max-w-xl">
-                <h2 class="text-4xl xl:text-5xl font-serif font-bold text-white leading-tight mb-6">
-                    Welcome Back to<br/><span class="text-secondary">SweetStudio</span>
+                <h2 class="text-3xl xl:text-4xl font-serif font-bold text-white leading-tight mb-6">
+                    Welcome Back to<br/><span class="text-pink-300">SweetStudio</span>
                 </h2>
                 <p class="text-white/50 text-lg leading-relaxed mb-10">
                     Sign in to access your orders, saved designs, and exclusive member rewards.
@@ -139,12 +128,21 @@
 
         <!-- ===== Right Side — Login Form ===== -->
         <div class="w-full lg:w-1/2 xl:w-[45%] flex items-center justify-center p-6 sm:p-10 bg-white dark:bg-[#1A1114] transition-colors duration-500">
-            <div class="w-full max-w-md">
+            <div class="w-full max-w-md text-center mx-auto">
 
-
+<a href="index.html" class="relative z-[60] flex items-center justify-center gap-3 group shrink-0 mx-auto w-fit">
+            <div class="flex flex-col">
+                <span class="text-2xl md:text-3xl font-serif font-black tracking-tight text-[#E75480] transition-colors">
+                    Sweet<span class="text-[#523940] dark:text-white">Studio</span>
+                </span>
+                <span class="text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-gray-500 dark:text-gray-400 font-bold leading-none mt-1">
+                     Custom Desserts
+                </span>
+            </div>
+        </a><br>
                 <!-- Header -->
                 <div class="mb-8 fade-in">
-                    <h1 class="text-3xl md:text-4xl font-serif font-bold text-primary dark:text-white mb-2">Sign In</h1>
+                    <h1 class="text-3xl md:text-4xl font-serif font-bold text-primary dark:text-white mb-2">Welcome Back</h1>
                     <p class="text-slate-500 dark:text-gray-400">Enter your credentials to access your account</p>
                 </div>
 
@@ -170,7 +168,7 @@
 
                     <!-- Remember me + Forgot password -->
                     <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-3">
+<div class="flex items-center gap-3">
                             <input type="checkbox" id="remember" class="w-4 h-4 rounded border-slate-300 dark:border-gray-600 text-secondary focus:ring-secondary/30 accent-secondary" />
                             <label for="remember" class="text-sm text-slate-600 dark:text-gray-400 cursor-pointer">Remember me</label>
                         </div>

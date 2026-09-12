@@ -79,12 +79,11 @@ document.addEventListener("DOMContentLoaded", () => {
           
           <!-- Theme & RTL Toggles -->
           <div class="flex items-center gap-2 mr-2">
-<button id="themeToggle" class="w-10 h-9 rounded-xl bg-slate-100 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-700 flex items-center justify-center text-slate-600 dark:text-gray-400 hover:border-secondary/40 hover:text-secondary transition-all">
+<button id="themeToggle" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-700 flex items-center justify-center text-slate-600 dark:text-gray-400 hover:border-secondary/40 hover:text-secondary transition-all">
                     <i class="fa-solid fa-moon text-sm dark:hidden"></i>
                     <i class="fa-solid fa-sun text-sm hidden dark:block"></i>
                 </button>
-           <button id="rtlToggle" class="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-100 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-700 text-xs font-bold text-slate-600 dark:text-gray-400 hover:border-secondary/40 transition-all">
-                    <i class="fa-solid fa-align-right text-[10px]"></i>
+           <button id="rtlToggle" class="flex items-center justify-center gap-2 px-3 h-10 rounded-xl bg-slate-100 dark:bg-[#2A1C20] border border-slate-200 dark:border-gray-700 text-xs font-bold text-slate-600 dark:text-gray-400 hover:border-secondary/40 transition-all">
                     <span id="rtlLabel">RTL</span>
                 </button>
           </div>
@@ -92,10 +91,10 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="w-px h-6 bg-gray-200 dark:bg-gray-700 mx-1"></div>
           
           <div class="flex items-center gap-3 ml-2">
-              <a href="login.html" class="flex items-center justify-center px-6 py-2.5 rounded-xl border border-[#E75480] text-[#E75480] font-semibold text-sm bg-transparent hover:bg-[#E75480] hover:text-white transition-all duration-300">
+              <a href="login.html" class="flex items-center justify-center px-6 h-10 rounded-xl border border-[#E75480] text-[#E75480] font-semibold text-sm bg-transparent hover:bg-[#E75480] hover:text-white transition-all duration-300">
                   Login
               </a>
-              <a href="signup.html" class="flex items-center justify-center px-6 py-2.5 rounded-xl bg-[#523940] dark:bg-[#E75480] text-white border border-[#523940] dark:border-[#E75480] font-semibold text-sm hover:bg-[#E75480] hover:border-[#E75480] dark:hover:bg-white dark:hover:text-[#E75480] transition-all duration-300">
+              <a href="signup.html" class="flex items-center justify-center px-6 h-10 rounded-xl bg-[#523940] dark:bg-[#E75480] text-white border border-[#523940] dark:border-[#E75480] font-semibold text-sm hover:bg-[#E75480] hover:border-[#E75480] dark:hover:bg-white dark:hover:text-[#E75480] transition-all duration-300">
                   Sign Up
               </a>
           </div>
