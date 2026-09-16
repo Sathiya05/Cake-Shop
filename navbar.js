@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <i class="fa-solid fa-sun text-sm hidden dark:block"></i>
                 </button>
         <button id="mobileRtlToggle" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-[#342429] border border-slate-200 dark:border-gray-700 text-xs font-bold text-slate-600 dark:text-gray-400 hover:border-secondary/40 transition-all">
-          <i class="fa-solid fa-align-right text-[10px]"></i>
+          
           <span id="mobileRtlLabel">RTL</span>
         </button>
       </div>
